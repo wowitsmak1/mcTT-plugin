@@ -1,0 +1,12 @@
+name: DiamondTouch
+prefix: diamond
+main: me.wowitsmak.main.Main
+version: 1.0
+api-version: 1.17
+commands:
+   survivalgames-start:
+   
+   addpoint:
+   
+   removepoint:
+   
