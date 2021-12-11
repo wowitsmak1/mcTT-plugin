@@ -1,6 +1,6 @@
 package me.wowitsmak.main;
 import org.bukkit.plugin.java.JavaPlugin;
-
+import org.bukkit.configuration.file.FileConfiguration;
 import me.wowitsmak.main.survivalgames.commands.AddPoint;
 import me.wowitsmak.main.survivalgames.commands.StartCommand;
 import me.wowitsmak.main.survivalgames.commands.SubtractPoint;
