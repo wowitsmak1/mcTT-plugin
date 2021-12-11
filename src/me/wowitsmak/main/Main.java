@@ -1,6 +1,7 @@
 package me.wowitsmak.main;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import me.wowitsmak.main.survivalgames.commands.AddPoint;
 import me.wowitsmak.main.survivalgames.commands.StartCommand;
 import me.wowitsmak.main.survivalgames.commands.SubtractPoint;
@@ -10,6 +11,7 @@ import me.wowitsmak.main.survivalgames.managers.GameManager;
 
 public class Main extends JavaPlugin {
     
+	public FileConfiguration config = this.getConfig();
 	private static Main instance;
 	public static Main getInstance(){
 	    return instance;
@@ -19,10 +21,10 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-		FileConfiguration config = this.getConfig();
-		config.addDefault("youAreAwesome", true);
+		
+		config.options().copyDefaults(true);
+		saveConfig();
 		this.saveDefaultConfig();
-		loadConfig();
     	GameManager gameManager = new GameManager(this);
     	StartCommand startcommand = new StartCommand(gameManager);
     	AddPoint addPoint = new AddPoint();
@@ -43,5 +45,3 @@ public class Main extends JavaPlugin {
     
     
 }
-
- 

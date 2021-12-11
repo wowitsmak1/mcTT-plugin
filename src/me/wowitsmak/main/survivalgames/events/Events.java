@@ -18,6 +18,7 @@ import me.wowitsmak.main.survivalgames.managers.GameManager;
 public class Events implements Listener {
 
 	private GameManager gameManager;
+	private HungerGamesLootTable hg;
 	public Events(GameManager gameManager) {
 		this.gameManager = gameManager;
 	}
@@ -41,15 +42,11 @@ public class Events implements Listener {
     }
     @EventHandler
     public void onChunkLoad(ChunkLoadEvent event) {
-    	if(event.getWorld() != Bukkit.getWorld("world"))
+    	if(event.getWorld() == Bukkit.getWorld("cove"))
             for(BlockState block : event.getChunk().getTileEntities()){
                 if(block instanceof Chest){
                  Chest chest = (Chest) block;
-                 if(chest instanceof Lootable) {
-                	 Lootable lootable = (Lootable) chest;
-                	 chest.getInventory().clear();
-                	 lootable.setLootTable(new HungerGamesLootTable());
-                 }
+                 hg.setupLoot(chest.getInventory());
                 }
             }
         }

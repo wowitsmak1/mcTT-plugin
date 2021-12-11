@@ -1,0 +1,21 @@
+CommonItems:
+ - wooden_sword
+ - chainmail_leggings
+ - chainmail_boots
+ - iron_helmet
+ - leather_chestplate
+RareItems:
+ - iron_sword
+ - stone_sword
+ - cooked_beef
+ - chainmail_leggings
+ - chainmail_boots
+ - iron_helmet
+ - leather_chestplate
+LegendaryItems:
+ - diamond_sword
+ - diamond_leggings
+ - diamond_boots
+ - diamond_helmet
+ - diamond_chestplate
+ - shield
