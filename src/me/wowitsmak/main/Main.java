@@ -19,6 +19,10 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+		FileConfiguration config = this.getConfig();
+		config.addDefault("youAreAwesome", true);
+		this.saveDefaultConfig();
+		loadConfig();
     	GameManager gameManager = new GameManager(this);
     	StartCommand startcommand = new StartCommand(gameManager);
     	AddPoint addPoint = new AddPoint();

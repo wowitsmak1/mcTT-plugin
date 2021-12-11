@@ -32,6 +32,7 @@ public class Events implements Listener {
         PlayerPoints.addPlayer(e.getPlayer());
         ScoreboardOwner.createScoreboard(e.getPlayer());
         ScoreboardOwner.updateScoreboard();     
+        
     }
     
     @EventHandler
