@@ -4,7 +4,11 @@ CommonItems:
  - chainmail_boots
  - iron_helmet
  - leather_chestplate
+ - wooden_axe
+ - arrow
+ - crossbow
 RareItems:
+ - bow
  - iron_sword
  - stone_sword
  - cooked_beef

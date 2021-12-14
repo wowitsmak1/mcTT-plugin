@@ -19,18 +19,18 @@ public class PlayerPoints {
 		}
 	}
 	
-	public static void addPoints(Player player, Integer num) {
+	public void addPoints(Player player, Integer num) {
 		playerPoints.put(player.getUniqueId(), playerPoints.get(player.getUniqueId())+num);
 		ScoreboardOwner.updateScoreboard();
 	}
-	public static void removePoints(Player player, Integer num) {
+	public void removePoints(Player player, Integer num) {
 		playerPoints.put(player.getUniqueId(), playerPoints.get(player.getUniqueId())-num);
 		ScoreboardOwner.updateScoreboard();
 	}
-	public static Integer getPoints(Player player) {
+	public Integer getPoints(Player player) {
 		return playerPoints.get(player.getUniqueId());
 	}
-	public static void addPlayer(Player player) {
+	public void addPlayer(Player player) {
 		if(playerPoints.containsKey(player.getUniqueId())) {}
 		else {
 			playerPoints.putIfAbsent(player.getUniqueId(), 0);

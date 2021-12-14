@@ -1,31 +1,34 @@
 package me.wowitsmak.main.survivalgames.managers;
-import me.wowitsmak.main.Main;
+
 
 public class GameManager {
 	private final BlockManager blockManager;
 	
-	private final PlayerManager playerManager;
-	
 	private GameState gameState;
+	private GameStart gameStart;
 	
-	public GameManager(Main instance) {
+	public GameManager() {
 		this.blockManager = new BlockManager(this);
-		this.playerManager = new PlayerManager(this);
+		this.gameStart = new GameStart();
 	}
 	
 	public void setGameState(GameState gameState){
-		if(this.gameState == GameState.STARTING && gameState.equals(GameState.ACTIVE)) return;
+		if(this.gameState == GameState.ACTIVE && gameState.equals(GameState.STARTING)) return;
 		this.gameState = gameState;
 		switch(gameState) {
 			case STARTING:
-				playerManager.giveItems();
+				gameStart.start();
 			case ACTIVE:
+				
 			case ENDGAME:
 			case INGAME:
 			default:
 		}
+	
+	}
+	public GameState getGameState() {
+		return this.gameState;
 	}
 	public BlockManager getBlockManager() {return blockManager; }
-	
-	public PlayerManager getPlayerManager() {return playerManager; }
+
 }
