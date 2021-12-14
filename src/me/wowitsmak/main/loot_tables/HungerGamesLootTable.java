@@ -9,12 +9,17 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
+
+import me.wowitsmak.main.Main;
 
 
-public class HungerGamesLootTable extends JavaPlugin {
+public class HungerGamesLootTable {
 
-	FileConfiguration config = this.getConfig();
+	private Main main;
+	public HungerGamesLootTable(Main main) {
+		this.main = new Main();
+	}
+	FileConfiguration config = main.getConfig();
 	List<String> commonItems = config.getStringList("CommonItems");
 	List<String> rareItems = config.getStringList("RareItems");
 	List<String> legendaryItems = config.getStringList("LegendaryItems");

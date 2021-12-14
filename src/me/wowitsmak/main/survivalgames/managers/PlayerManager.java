@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -23,8 +22,6 @@ public class PlayerManager {
 	Collection<? extends Player> onlinePlayerList = Bukkit.getServer().getOnlinePlayers();
 	public void giveItems() {
 		for (Player player : onlinePlayerList) {
-			if(!player.getGameMode().equals(GameMode.SURVIVAL)) return;
-			player.sendMessage(player.getAddress().toString());
 			giveKit(player);
 		}
 	}
