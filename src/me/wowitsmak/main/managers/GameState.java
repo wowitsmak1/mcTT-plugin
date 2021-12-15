@@ -1,4 +1,4 @@
-package me.wowitsmak.main.survivalgames.managers;
+package me.wowitsmak.main.managers;
 
 
 

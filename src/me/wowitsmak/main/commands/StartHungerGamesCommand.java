@@ -1,10 +1,10 @@
-package me.wowitsmak.main.survivalgames.commands;
+package me.wowitsmak.main.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import me.wowitsmak.main.Main;
-import me.wowitsmak.main.survivalgames.managers.GameState;
+import me.wowitsmak.main.managers.GameState;
 
 public class StartHungerGamesCommand implements CommandExecutor {
 

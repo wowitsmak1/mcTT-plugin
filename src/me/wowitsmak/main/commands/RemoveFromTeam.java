@@ -1,4 +1,4 @@
-package me.wowitsmak.main.survivalgames.commands;
+package me.wowitsmak.main.commands;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
