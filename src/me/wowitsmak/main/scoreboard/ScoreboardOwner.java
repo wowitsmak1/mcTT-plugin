@@ -42,7 +42,7 @@ public class ScoreboardOwner {
         }
         if(Main.getGameManager().getGameState() == GameState.ACTIVE) {
         	for(Player player : Bukkit.getOnlinePlayers()){
-        		Score players = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Players Left:");
+        		Score players = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GOLD +"Players Left:");
         		players.setScore(Main.getPlayerManager().playing.size());
         		}
         	}

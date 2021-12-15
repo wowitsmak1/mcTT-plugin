@@ -24,6 +24,7 @@ public class TeamStuff {
         teams.get("team4").put(Bukkit.getPlayer("Blu_xd"), Main.getPointManager().getPoints(Bukkit.getPlayer("Blu_xd")));
         teams.get("team4").put(Bukkit.getPlayer("heyitskinzyy"), Main.getPointManager().getPoints(Bukkit.getPlayer("heyitskinzyy")));
         teams.get("team5").put(Bukkit.getPlayer("Turamisu"), Main.getPointManager().getPoints(Bukkit.getPlayer("Turamisu")));
+        teams.get("team5").put(Bukkit.getPlayer("RedVelvety"), Main.getPointManager().getPoints(Bukkit.getPlayer("RedVelvety")));
         teams.get("team6").put(Bukkit.getPlayer("iD13D"), Main.getPointManager().getPoints(Bukkit.getPlayer("iD13D")));
         teams.get("team6").put(Bukkit.getPlayer("okToasty"), Main.getPointManager().getPoints(Bukkit.getPlayer("okToasty")));
         teams.get("team7").put(Bukkit.getPlayer("Acewoman"), Main.getPointManager().getPoints(Bukkit.getPlayer("Acewoman")));

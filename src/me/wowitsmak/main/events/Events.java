@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -73,6 +74,18 @@ public class Events implements Listener{
             }
     	}
     }
+	@EventHandler
+	public void onPlayerDamage(EntityDamageByEntityEvent event){
+		if(event.getEntity() instanceof Player){
+			if(event.getDamager() instanceof Player){
+				Player killer = (Player) event.getDamager();
+				Player damaged = (Player) event.getEntity();
+				if(Main.getTeamManager().getPlayerTeam(damaged) == Main.getTeamManager().getPlayerTeam(killer)){
+					event.setCancelled(true);
+				}
+			}
+		}
+	}
     @EventHandler
     public void onPlayerMurder(PlayerDeathEvent event) {
     		if(pm.playing.contains(event.getEntity()) && pm.playing.contains(event.getEntity().getKiller()) && Main.getRound() == 1) {

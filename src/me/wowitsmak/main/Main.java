@@ -6,7 +6,9 @@ import me.wowitsmak.main.loot_tables.HungerGamesLootTable;
 import me.wowitsmak.main.score.PlayerPoints;
 import me.wowitsmak.main.scoreboard.ScoreboardOwner;
 import me.wowitsmak.main.commands.AddToTeam;
+import me.wowitsmak.main.commands.HideOtherPlayers;
 import me.wowitsmak.main.commands.RemoveFromTeam;
+import me.wowitsmak.main.commands.ShowOtherPlayers;
 import me.wowitsmak.main.commands.StartHungerGamesCommand;
 import me.wowitsmak.main.commands.StopHungerGamesCommand;
 import me.wowitsmak.main.events.Events;
@@ -44,12 +46,16 @@ public class Main extends JavaPlugin {
 		RemoveFromTeam remteam = new RemoveFromTeam();
     	StartHungerGamesCommand hstartcommand = new StartHungerGamesCommand();
 		StopHungerGamesCommand hstopcommand = new StopHungerGamesCommand();
+		ShowOtherPlayers showplayers = new ShowOtherPlayers();
+		HideOtherPlayers hideplayers = new HideOtherPlayers();
     	Events blockbreak = new Events(new HungerGamesLootTable());
     	getServer().getPluginManager().registerEvents(blockbreak, this);
     	this.getCommand("survivalgames-start").setExecutor(hstartcommand);
 		this.getCommand("survivalgames-stop").setExecutor(hstopcommand);
 		this.getCommand("team-add").setExecutor(teamadd);
 		this.getCommand("team-remove").setExecutor(remteam);
+		this.getCommand("player-show").setExecutor(showplayers);
+		this.getCommand("player-hide").setExecutor(hideplayers);
     }
     
     

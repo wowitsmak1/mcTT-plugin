@@ -12,3 +12,7 @@ commands:
    team-add:
    
    team-remove:
+
+   player-show:
+
+   player-hide:

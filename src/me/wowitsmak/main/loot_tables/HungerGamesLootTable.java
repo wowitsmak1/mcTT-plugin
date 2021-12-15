@@ -43,6 +43,18 @@ public class HungerGamesLootTable {
 			}
 			else {
 				ItemStack rareItem = new ItemStack(mat); 
+				final String typeNameString = rareItem.getType().name();
+				if(rand.nextBoolean() == true){
+					if (typeNameString.endsWith("_HELMET")
+					|| typeNameString.endsWith("_CHESTPLATE")
+					|| typeNameString.endsWith("_LEGGINGS")
+					|| typeNameString.endsWith("_BOOTS")) {
+				rareItem.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, ThreadLocalRandom.current().nextInt(1, 4));
+				}
+				else if(typeNameString.endsWith("_SWORD")){
+					rareItem.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, ThreadLocalRandom.current().nextInt(1, 6));
+				}
+				}
 				inv.setItem(getEmptyItemSlot(inv), rareItem);
 			}
 
