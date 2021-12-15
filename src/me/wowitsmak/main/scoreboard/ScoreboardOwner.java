@@ -33,7 +33,7 @@ public class ScoreboardOwner {
     
     public static void updateScoreboard(){
         for(Player online : Bukkit.getOnlinePlayers()){
-            Score score = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Points:");
+            Score score = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.AQUA+ "Points:");
             score.setScore(Main.getPointManager().getPoints(online));
             if(Main.getTeamManager().getPlayerTeam(online) != null){
             Score teampoints = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GREEN + "Team Points:");

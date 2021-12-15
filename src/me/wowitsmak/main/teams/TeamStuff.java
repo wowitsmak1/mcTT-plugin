@@ -41,7 +41,7 @@ public class TeamStuff {
     public HashMap<Player, Integer> getPlayerTeam(Player player){
         Integer i = 1;
         while(true){
-            if(i < 25){
+            if(i < 26){
             if(teams.get("team"+i).containsKey(player)){
                 updateTeamPoints(teams.get("team"+i));
                 return teams.get("team"+i);
