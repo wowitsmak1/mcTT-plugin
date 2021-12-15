@@ -1,6 +1,7 @@
 package me.wowitsmak.main.managers;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.GameMode;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
@@ -35,6 +36,8 @@ public class HungerGamesStart {
 			player.setWalkSpeed(0F);
 			player.setSaturation(20);
 			player.setHealth(20);
+			player.setGameMode(GameMode.SURVIVAL);
+			Main.getHungerGamesWorld().start("survivalmap2");
 			pm.teleportPlayers(Bukkit.getWorld("survivalmap2"));
 		}
 		Main.getScoreboardManager();

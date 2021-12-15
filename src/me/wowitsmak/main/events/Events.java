@@ -110,7 +110,7 @@ public class Events implements Listener{
     				if(pm.playing.size() == 1) {
         				Main.getGameManager().setGameState(GameState.ENDGAME);
         				event.getEntity().getKiller().sendMessage(ChatColor.GOLD + "You have won!");
-        				Bukkit.broadcastMessage(ChatColor.GOLD + "" + event.getEntity().getKiller() + " has won!");
+        				Bukkit.broadcastMessage(ChatColor.GOLD + "" + event.getEntity().getKiller().getName() + " has won!");
         				Main.getPointManager().addPoints(event.getEntity().getKiller(), 1000);
         				Bukkit.getScheduler().cancelTasks(Main.getInstance());
         				Bukkit.broadcastMessage(ChatColor.GREEN + event.getEntity().getKiller().getName() + " has " + Main.getPointManager().getPoints(event.getEntity().getKiller()) + " points");
