@@ -11,7 +11,7 @@ import me.wowitsmak.main.survivalgames.managers.PlayerManager;
 
 
 public class Main extends JavaPlugin {
-    
+    private static Integer game = 1;
 	private static GameManager gameManager;
 	private static PlayerManager playerManager;
 	private static PlayerPoints playerPoints;
@@ -46,4 +46,6 @@ public class Main extends JavaPlugin {
     public static PlayerPoints getPointManager() { return playerPoints; }
     public static GameManager getGameManager() { return gameManager; }
     public static PlayerManager getPlayerManager() { return playerManager; }
+	public static Integer getRound(){ return game; }
+	public static void setRound(Integer num){ game = num; }
 }

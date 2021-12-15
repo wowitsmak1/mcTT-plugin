@@ -13,6 +13,7 @@ public class StartCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 		if(sender.isOp())
 		Main.getGameManager().setGameState(GameState.STARTING);
+		Main.setRound(1);
 		return false;
 	}
 

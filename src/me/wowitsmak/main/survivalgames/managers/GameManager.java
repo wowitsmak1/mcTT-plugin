@@ -1,15 +1,16 @@
 package me.wowitsmak.main.survivalgames.managers;
 
+import me.wowitsmak.main.Main;
 
 public class GameManager {
 	private final BlockManager blockManager;
 	
 	private GameState gameState;
-	private GameStart gameStart;
+	private HungerGamesStart hgameStart;
 	
 	public GameManager() {
 		this.blockManager = new BlockManager(this);
-		this.gameStart = new GameStart();
+		this.hgameStart = new HungerGamesStart();
 	}
 	
 	public void setGameState(GameState gameState){
@@ -17,7 +18,9 @@ public class GameManager {
 		this.gameState = gameState;
 		switch(gameState) {
 			case STARTING:
-				gameStart.start();
+			if(Main.getRound() == 1){
+				hgameStart.start();
+			}
 			case ACTIVE:
 				
 			case ENDGAME:
