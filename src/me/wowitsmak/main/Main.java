@@ -36,6 +36,7 @@ public class Main extends JavaPlugin {
 		Main.gameManager = new GameManager();
 		Main.playerPoints = new PlayerPoints();
 		Main.hgstart = new HungerGamesStart();
+		Main.hgworldpreparer = new ReadyWorld();
 	}
     @Override
     public void onEnable() {
