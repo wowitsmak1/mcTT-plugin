@@ -70,7 +70,7 @@ public class Events implements Listener{
     }
     @EventHandler
     public void onPlayerMurder(PlayerDeathEvent event) {
-    		if(pm.playing.contains(event.getEntity()) && pm.playing.contains(event.getEntity().getKiller())) {
+    		if(pm.playing.contains(event.getEntity()) && pm.playing.contains(event.getEntity().getKiller()) && Main.getRound() == 1) {
     			Main.getPointManager().addPoints(event.getEntity().getKiller(), 500);
     			pm.playing.remove(event.getEntity());
     			pm.spectators.add(event.getEntity());

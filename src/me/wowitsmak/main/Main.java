@@ -4,7 +4,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.wowitsmak.main.loot_tables.HungerGamesLootTable;
 import me.wowitsmak.main.score.PlayerPoints;
-import me.wowitsmak.main.survivalgames.commands.StartCommand;
+import me.wowitsmak.main.survivalgames.commands.StartHungerGamesCommand;
+import me.wowitsmak.main.survivalgames.commands.StopHungerGamesCommand;
 import me.wowitsmak.main.survivalgames.events.Events;
 import me.wowitsmak.main.survivalgames.managers.GameManager;
 import me.wowitsmak.main.survivalgames.managers.PlayerManager;
@@ -28,10 +29,12 @@ public class Main extends JavaPlugin {
 		config.options().copyDefaults(true);
 		saveConfig();
 		this.saveDefaultConfig();
-    	StartCommand startcommand = new StartCommand();
+    	StartHungerGamesCommand hstartcommand = new StartHungerGamesCommand();
+		StopHungerGamesCommand hstopcommand = new StopHungerGamesCommand();
     	Events blockbreak = new Events(new HungerGamesLootTable());
     	getServer().getPluginManager().registerEvents(blockbreak, this);
-    	this.getCommand("survivalgames-start").setExecutor(startcommand);
+    	this.getCommand("survivalgames-start").setExecutor(hstartcommand);
+		this.getCommand("survivalgames-stop").setExecutor(hstopcommand);
     }
     
     
