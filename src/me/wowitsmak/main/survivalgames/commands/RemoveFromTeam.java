@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.wowitsmak.main.Main;
+import me.wowitsmak.main.scoreboard.ScoreboardOwner;
 import net.md_5.bungee.api.ChatColor;
 
 public class RemoveFromTeam implements CommandExecutor {
@@ -17,8 +18,11 @@ public class RemoveFromTeam implements CommandExecutor {
         String team = args[1].toString();
         Player player = Bukkit.getPlayerExact(args[0].toString());
 		Main.getTeamManager().getTeam(team).remove(player);
-        sender.sendMessage(ChatColor.RED + "Removed "+ player.getName() + " from the team.");	
-	}
+        sender.sendMessage(ChatColor.RED + "Removed "+ player.getName() + " from the team.");
+        Main.getScoreboardManager();
+        ScoreboardOwner.createScoreboard(player);
+		ScoreboardOwner.updateScoreboard();	
+		}
         return false;
 	
     }

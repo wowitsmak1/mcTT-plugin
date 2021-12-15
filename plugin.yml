@@ -2,8 +2,13 @@ name: mcTTplugin
 prefix: mcTT
 main: me.wowitsmak.main.Main
 version: 1.0
+author: wowitsmak
 api-version: 1.17
 commands:
    survivalgames-start:
 
    survivalgames-stop:
+   
+   team-add:
+   
+   team-remove:

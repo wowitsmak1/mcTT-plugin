@@ -8,6 +8,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 import me.wowitsmak.main.Main;
 import me.wowitsmak.main.survivalgames.managers.GameState;
+import net.md_5.bungee.api.ChatColor;
 
 public class ScoreboardOwner {
 
@@ -16,12 +17,15 @@ public class ScoreboardOwner {
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getNewScoreboard();
         Objective objective = board.registerNewObjective("Stats", "dummy");
-        objective.setDisplayName("Stats");
+        objective.setDisplayName(ChatColor.BLUE + "Stats");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        Score score = objective.getScore("Points:");
-        Score teampoints = objective.getScore("Team Points:");
-        Score players = objective.getScore("Players Left:");
-        teampoints.setScore(Main.getPointManager().getTeamPoints(Main.getTeamManager().getPlayerTeam(player)));
+        Score score = objective.getScore(ChatColor.AQUA+ "Points:");
+        if(Main.getTeamManager().getPlayerTeam(player) != null){
+            Score teampoints = objective.getScore(ChatColor.GREEN + "Team Points:");
+            teampoints.setScore(Main.getPointManager().getTeamPoints(Main.getTeamManager().getPlayerTeam(player)));
+        }
+        Score players = objective.getScore(ChatColor.GOLD +"Players Left:");
+        
         players.setScore(Main.getPlayerManager().playing.size());
         score.setScore(Main.getPointManager().getPoints(player));
         player.setScoreboard(board);
@@ -31,8 +35,10 @@ public class ScoreboardOwner {
         for(Player online : Bukkit.getOnlinePlayers()){
             Score score = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Points:");
             score.setScore(Main.getPointManager().getPoints(online));
+            if(Main.getTeamManager().getPlayerTeam(online) != null){
             Score teampoints = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Team Points:");
             teampoints.setScore(Main.getPointManager().getTeamPoints(Main.getTeamManager().getPlayerTeam(online)));
+            }
         }
         if(Main.getGameManager().getGameState() == GameState.ACTIVE) {
         	for(Player player : Bukkit.getOnlinePlayers()){

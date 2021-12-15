@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.wowitsmak.main.Main;
+import me.wowitsmak.main.scoreboard.ScoreboardOwner;
 import net.md_5.bungee.api.ChatColor;
 
 public class AddToTeam implements CommandExecutor {
@@ -16,8 +17,17 @@ public class AddToTeam implements CommandExecutor {
 		if(sender.isOp()){
         String team = args[1].toString();
         Player player = Bukkit.getPlayerExact(args[0].toString());
-		Main.getTeamManager().getTeam(team).putIfAbsent(player, Main.getPointManager().getPoints(player));
-        sender.sendMessage(ChatColor.GREEN + "Added "+ player.getName() + " to the team!");	
+        if(!Main.getTeamManager().getTeam(team).containsKey(player)) {
+        	Main.getTeamManager().getTeam(team).put(player, Main.getPointManager().getPoints(player));
+        	sender.sendMessage(ChatColor.GREEN + "Added "+ player.getName() + " to the team!");	
+        	Main.getScoreboardManager();
+        	ScoreboardOwner.createScoreboard(player);
+			ScoreboardOwner.updateScoreboard();
+        }
+        else {
+        	sender.sendMessage(ChatColor.RED + "The player is already on this team!");
+        }
+        
 	}
         return false;
 	

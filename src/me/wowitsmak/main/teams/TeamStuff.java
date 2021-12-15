@@ -9,6 +9,9 @@ import me.wowitsmak.main.Main;
 public class TeamStuff {
     private HashMap<String,HashMap<Player,Integer>> teams = new HashMap<>();
     public TeamStuff(){
+        
+    }
+    public void addTeamPlayers(){
         for(int i=1;i<26;i++){
             teams.put("team"+i, new HashMap<Player, Integer>());
         }

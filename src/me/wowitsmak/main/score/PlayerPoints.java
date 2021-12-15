@@ -17,18 +17,18 @@ public class PlayerPoints {
 			addPlayer(player.getPlayer());
 		}
 	}
-	private static Map<UUID, Integer> playerPoints = new HashMap<>();
+	private static Map<Player, Integer> playerPoints = new HashMap<>();
 	
 	public void addPoints(Player player, Integer num) {
-		playerPoints.put(player.getUniqueId(), playerPoints.get(player.getUniqueId())+num);
+		playerPoints.put(player, playerPoints.get(player)+num);
 		ScoreboardOwner.updateScoreboard();
 	}
 	public void removePoints(Player player, Integer num) {
-		playerPoints.put(player.getUniqueId(), playerPoints.get(player.getUniqueId())-num);
+		playerPoints.put(player, playerPoints.get(player)-num);
 		ScoreboardOwner.updateScoreboard();
 	}
 	public Integer getPoints(Player player) {
-		return playerPoints.get(player.getUniqueId());
+		return playerPoints.get(player);
 	}
 	public Integer getTeamPoints(String str){
 		Integer teampoints = 0; 
@@ -45,9 +45,9 @@ public class PlayerPoints {
 		return teampoints;
 	}
 	public void addPlayer(Player player) {
-		if(playerPoints.containsKey(player.getUniqueId())) {}
+		if(playerPoints.containsKey(player)) {}
 		else {
-			playerPoints.putIfAbsent(player.getUniqueId(), 0);
+			playerPoints.putIfAbsent(player, 0);
 		}
 	}
 }

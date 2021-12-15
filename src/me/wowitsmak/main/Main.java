@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.wowitsmak.main.loot_tables.HungerGamesLootTable;
 import me.wowitsmak.main.score.PlayerPoints;
+import me.wowitsmak.main.scoreboard.ScoreboardOwner;
 import me.wowitsmak.main.survivalgames.commands.AddToTeam;
 import me.wowitsmak.main.survivalgames.commands.RemoveFromTeam;
 import me.wowitsmak.main.survivalgames.commands.StartHungerGamesCommand;
@@ -22,8 +23,10 @@ public class Main extends JavaPlugin {
 	private static HungerGamesStart hgstart;
 	private static PlayerPoints playerPoints;
 	private static TeamStuff teamStuff;
+	private static ScoreboardOwner scmanager;
 	private static Main instance;
 	public Main() {
+		Main.scmanager = new ScoreboardOwner();
 		Main.teamStuff = new TeamStuff();
 		Main.playerManager = new PlayerManager();
 		Main.gameManager = new GameManager();
@@ -58,6 +61,7 @@ public class Main extends JavaPlugin {
     public static Main getInstance(){
 	    return instance;
 	}
+    public static ScoreboardOwner getScoreboardManager() {return scmanager; }
 	public static TeamStuff getTeamManager(){ return teamStuff; }
     public static PlayerPoints getPointManager() { return playerPoints; }
     public static GameManager getGameManager() { return gameManager; }

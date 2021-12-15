@@ -36,8 +36,11 @@ public class Events implements Listener{
 	@EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
         Main.getPointManager().addPlayer(e.getPlayer());
-        ScoreboardOwner.createScoreboard(e.getPlayer());
-        ScoreboardOwner.updateScoreboard();     
+		Main.getTeamManager().addTeamPlayers();
+        Main.getScoreboardManager();
+		ScoreboardOwner.createScoreboard(e.getPlayer());
+        Main.getScoreboardManager();
+		ScoreboardOwner.updateScoreboard();     
         if(Bukkit.getWorld("cove") == null) {
         	new WorldCreator("cove").createWorld();
         }
@@ -45,6 +48,7 @@ public class Events implements Listener{
     
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e){
+    	Main.getScoreboardManager();
     	ScoreboardOwner.updateScoreboard();
     }
     @EventHandler
@@ -62,6 +66,7 @@ public class Events implements Listener{
     	if(pm.playing.contains(event.getPlayer()) && Main.getGameManager().getGameState() == GameState.STARTING) {
     		final Location from = event.getFrom();
             final Location to = event.getTo();
+            Main.getScoreboardManager();
             ScoreboardOwner.updateScoreboard();
             if (from.getBlockX() != to.getBlockX() || from.getBlockZ() != to.getBlockZ() || from.getBlockY() != to.getBlockY()) {
                 event.setTo(from);
@@ -74,6 +79,7 @@ public class Events implements Listener{
     			Main.getPointManager().addPoints(event.getEntity().getKiller(), 500);
     			pm.playing.remove(event.getEntity());
     			pm.spectators.add(event.getEntity());
+    			Main.getScoreboardManager();
     			ScoreboardOwner.updateScoreboard();
     			event.getEntity().getKiller().sendMessage("There are " + pm.playing.size() + " players left.");
     			if(pm.playing.size() == 1) {
