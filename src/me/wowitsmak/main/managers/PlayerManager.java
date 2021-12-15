@@ -35,11 +35,15 @@ public class PlayerManager {
 	public void giveKit(Player player) {
 		player.getInventory().addItem(new ItemStack(Material.WOODEN_SWORD));
 	}
-	public void teleportPlayers()
+	public void teleportPlayers(World world)
 	{
-	World cove = Bukkit.getWorld("cove");
-	locations.add(new Location(cove, 51.5, 69, 251.5, 90, 0));
-	locations.add(new Location(cove, 49.5, 69, 255.5, 1939, 0));
+	if(world.getName() == "cove"){
+		
+	}
+	else if (world.getName() == "cavern"){
+
+	}
+	
 	Integer i = 0;
 	 for(Player player : playing)
 	 {
