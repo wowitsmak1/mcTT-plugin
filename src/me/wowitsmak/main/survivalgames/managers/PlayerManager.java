@@ -20,7 +20,7 @@ public class PlayerManager {
 	public Set<Player> moderators = new HashSet<>();
 	public Set<Player> spectators = new HashSet<>();
 	public Set<Player> playing = new HashSet<>();
-	private static Map<Player, Integer> playerButtonTotal = new HashMap<>();
+	//private static Map<Player, Integer> playerButtonTotal = new HashMap<>();
 	
 	public PlayerManager() {
 		for (OfflinePlayer player : Bukkit.getServer().getOperators()) {

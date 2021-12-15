@@ -19,7 +19,9 @@ public class ScoreboardOwner {
         objective.setDisplayName("Stats");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         Score score = objective.getScore("Points:");
+        Score teampoints = objective.getScore("Team Points:");
         Score players = objective.getScore("Players Left:");
+        teampoints.setScore(Main.getPointManager().getTeamPoints(Main.getTeamManager().getPlayerTeam(player)));
         players.setScore(Main.getPlayerManager().playing.size());
         score.setScore(Main.getPointManager().getPoints(player));
         player.setScoreboard(board);
@@ -29,6 +31,8 @@ public class ScoreboardOwner {
         for(Player online : Bukkit.getOnlinePlayers()){
             Score score = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Points:");
             score.setScore(Main.getPointManager().getPoints(online));
+            Score teampoints = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Team Points:");
+            teampoints.setScore(Main.getPointManager().getTeamPoints(Main.getTeamManager().getPlayerTeam(online)));
         }
         if(Main.getGameManager().getGameState() == GameState.ACTIVE) {
         	for(Player player : Bukkit.getOnlinePlayers()){

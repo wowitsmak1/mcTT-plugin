@@ -4,12 +4,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.wowitsmak.main.loot_tables.HungerGamesLootTable;
 import me.wowitsmak.main.score.PlayerPoints;
+import me.wowitsmak.main.survivalgames.commands.AddToTeam;
+import me.wowitsmak.main.survivalgames.commands.RemoveFromTeam;
 import me.wowitsmak.main.survivalgames.commands.StartHungerGamesCommand;
 import me.wowitsmak.main.survivalgames.commands.StopHungerGamesCommand;
 import me.wowitsmak.main.survivalgames.events.Events;
 import me.wowitsmak.main.survivalgames.managers.GameManager;
 import me.wowitsmak.main.survivalgames.managers.HungerGamesStart;
 import me.wowitsmak.main.survivalgames.managers.PlayerManager;
+import me.wowitsmak.main.teams.TeamStuff;
 
 
 public class Main extends JavaPlugin {
@@ -19,7 +22,9 @@ public class Main extends JavaPlugin {
 	private static HungerGamesStart hgstart;
 	private static PlayerPoints playerPoints;
 	private static Main instance;
+	private static TeamStuff teamStuff;
 	public Main() {
+		Main.teamStuff = new TeamStuff();
 		Main.playerManager = new PlayerManager();
 		Main.gameManager = new GameManager();
 		Main.playerPoints = new PlayerPoints();
@@ -32,12 +37,16 @@ public class Main extends JavaPlugin {
 		config.options().copyDefaults(true);
 		saveConfig();
 		this.saveDefaultConfig();
+		AddToTeam teamadd = new AddToTeam();
+		RemoveFromTeam remteam = new RemoveFromTeam();
     	StartHungerGamesCommand hstartcommand = new StartHungerGamesCommand();
 		StopHungerGamesCommand hstopcommand = new StopHungerGamesCommand();
     	Events blockbreak = new Events(new HungerGamesLootTable());
     	getServer().getPluginManager().registerEvents(blockbreak, this);
     	this.getCommand("survivalgames-start").setExecutor(hstartcommand);
 		this.getCommand("survivalgames-stop").setExecutor(hstopcommand);
+		this.getCommand("team-add").setExecutor(teamadd);
+		this.getCommand("team-remove").setExecutor(remteam);
     }
     
     
@@ -49,6 +58,7 @@ public class Main extends JavaPlugin {
     public static Main getInstance(){
 	    return instance;
 	}
+	public static TeamStuff getTeamManager(){ return teamStuff; }
     public static PlayerPoints getPointManager() { return playerPoints; }
     public static GameManager getGameManager() { return gameManager; }
     public static PlayerManager getPlayerManager() { return playerManager; }
