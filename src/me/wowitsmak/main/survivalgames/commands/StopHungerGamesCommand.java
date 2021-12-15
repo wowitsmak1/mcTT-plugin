@@ -36,6 +36,7 @@ public class StopHungerGamesCommand implements CommandExecutor {
             }
         }
         Bukkit.getScheduler().cancelTasks(Main.getInstance());
+        Main.setTime(5);
 		return false;
 	}
 }

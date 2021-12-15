@@ -16,7 +16,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class HungerGamesStart {
 	PlayerManager pm = Main.getPlayerManager();
-	Integer time = 5;
+	public Integer time = 5;
 	HungerGamesLootTable hg;
 	public HungerGamesStart() {
 		this.pm = Main.getPlayerManager();
