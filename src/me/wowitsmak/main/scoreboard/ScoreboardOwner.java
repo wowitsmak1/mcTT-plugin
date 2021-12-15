@@ -36,7 +36,7 @@ public class ScoreboardOwner {
             Score score = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Points:");
             score.setScore(Main.getPointManager().getPoints(online));
             if(Main.getTeamManager().getPlayerTeam(online) != null){
-            Score teampoints = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Team Points:");
+            Score teampoints = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GREEN + "Team Points:");
             teampoints.setScore(Main.getPointManager().getTeamPoints(Main.getTeamManager().getPlayerTeam(online)));
             }
         }
