@@ -5,14 +5,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.wowitsmak.main.loot_tables.HungerGamesLootTable;
 import me.wowitsmak.main.score.PlayerPoints;
 import me.wowitsmak.main.scoreboard.ScoreboardOwner;
-import me.wowitsmak.main.survivalgames.commands.AddToTeam;
-import me.wowitsmak.main.survivalgames.commands.RemoveFromTeam;
-import me.wowitsmak.main.survivalgames.commands.StartHungerGamesCommand;
-import me.wowitsmak.main.survivalgames.commands.StopHungerGamesCommand;
-import me.wowitsmak.main.survivalgames.events.Events;
-import me.wowitsmak.main.survivalgames.managers.GameManager;
-import me.wowitsmak.main.survivalgames.managers.HungerGamesStart;
-import me.wowitsmak.main.survivalgames.managers.PlayerManager;
+import me.wowitsmak.main.commands.AddToTeam;
+import me.wowitsmak.main.commands.RemoveFromTeam;
+import me.wowitsmak.main.commands.StartHungerGamesCommand;
+import me.wowitsmak.main.commands.StopHungerGamesCommand;
+import me.wowitsmak.main.events.Events;
+import me.wowitsmak.main.managers.GameManager;
+import me.wowitsmak.main.managers.HungerGamesStart;
+import me.wowitsmak.main.managers.PlayerManager;
 import me.wowitsmak.main.teams.TeamStuff;
 
 

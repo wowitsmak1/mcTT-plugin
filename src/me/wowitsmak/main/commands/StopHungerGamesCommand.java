@@ -1,4 +1,4 @@
-package me.wowitsmak.main.survivalgames.commands;
+package me.wowitsmak.main.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
 import me.wowitsmak.main.Main;
-import me.wowitsmak.main.survivalgames.managers.GameState;
+import me.wowitsmak.main.managers.GameState;
 
 public class StopHungerGamesCommand implements CommandExecutor {
     

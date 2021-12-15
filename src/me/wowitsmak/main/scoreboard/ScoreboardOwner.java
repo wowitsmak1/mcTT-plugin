@@ -7,7 +7,7 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 import me.wowitsmak.main.Main;
-import me.wowitsmak.main.survivalgames.managers.GameState;
+import me.wowitsmak.main.managers.GameState;
 import net.md_5.bungee.api.ChatColor;
 
 public class ScoreboardOwner {
