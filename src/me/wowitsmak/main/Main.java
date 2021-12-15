@@ -21,8 +21,8 @@ public class Main extends JavaPlugin {
 	private static PlayerManager playerManager;
 	private static HungerGamesStart hgstart;
 	private static PlayerPoints playerPoints;
-	private static Main instance;
 	private static TeamStuff teamStuff;
+	private static Main instance;
 	public Main() {
 		Main.teamStuff = new TeamStuff();
 		Main.playerManager = new PlayerManager();

@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import me.wowitsmak.main.Main;
@@ -11,15 +12,12 @@ import me.wowitsmak.main.scoreboard.ScoreboardOwner;
 
 public class PlayerPoints {
 
-	private static Map<UUID, Integer> playerPoints = new HashMap<>();
-	{
-		for(Player player : Bukkit.getOnlinePlayers()) {
-			if(playerPoints.containsKey(player.getUniqueId())) {}
-			else {
-				playerPoints.putIfAbsent(player.getUniqueId(), 0);
-			}
+	public PlayerPoints() {
+		for(OfflinePlayer player : Bukkit.getWhitelistedPlayers()) {
+			addPlayer(player.getPlayer());
 		}
 	}
+	private static Map<UUID, Integer> playerPoints = new HashMap<>();
 	
 	public void addPoints(Player player, Integer num) {
 		playerPoints.put(player.getUniqueId(), playerPoints.get(player.getUniqueId())+num);

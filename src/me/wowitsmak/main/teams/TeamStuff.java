@@ -33,6 +33,7 @@ public class TeamStuff {
         teams.get("team10").put(Bukkit.getPlayer("Kanolinn"), Main.getPointManager().getPoints(Bukkit.getPlayer("Kanolinn")));
         teams.get("team11").put(Bukkit.getPlayer("Fenzir"), Main.getPointManager().getPoints(Bukkit.getPlayer("Fenzir")));
         teams.get("team11").put(Bukkit.getPlayer("Novacity"), Main.getPointManager().getPoints(Bukkit.getPlayer("Novacity")));
+        teams.get("team25").put(Bukkit.getPlayer("wowitsmak"), Main.getPointManager().getPoints(Bukkit.getPlayer("wowitsmak")));
     }    
     public HashMap<Player, Integer> getPlayerTeam(Player player){
         Integer i = 1;
