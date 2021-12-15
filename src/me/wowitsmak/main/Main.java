@@ -16,6 +16,7 @@ import me.wowitsmak.main.managers.GameManager;
 import me.wowitsmak.main.managers.HungerGamesStart;
 import me.wowitsmak.main.managers.PlayerManager;
 import me.wowitsmak.main.teams.TeamStuff;
+import me.wowitsmak.main.worlds.ReadyWorld;
 
 
 public class Main extends JavaPlugin {
@@ -23,6 +24,7 @@ public class Main extends JavaPlugin {
 	private static GameManager gameManager;
 	private static PlayerManager playerManager;
 	private static HungerGamesStart hgstart;
+	private static ReadyWorld hgworldpreparer;
 	private static PlayerPoints playerPoints;
 	private static TeamStuff teamStuff;
 	private static ScoreboardOwner scmanager;
@@ -76,5 +78,5 @@ public class Main extends JavaPlugin {
 	public static void setRound(Integer num){ game = num; }
 	public static Integer getTime(){ return hgstart.time; }
 	public static void setTime(Integer num){ hgstart.time = num; }
-	
+	public static ReadyWorld getHungerGamesWorld() { return hgworldpreparer; }	
 }

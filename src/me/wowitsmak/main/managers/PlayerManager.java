@@ -13,6 +13,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import me.wowitsmak.main.Main;
+
 public class PlayerManager {
 	public ArrayList<Location> locations = new ArrayList<Location>();
 	public Set<Player> moderators = new HashSet<>();
@@ -37,12 +39,7 @@ public class PlayerManager {
 	}
 	public void teleportPlayers(World world)
 	{
-	if(world.getName() == "cove"){
-		
-	}
-	else if (world.getName() == "cavern"){
-
-	}
+	Main.getHungerGamesWorld().start(world);
 	
 	Integer i = 0;
 	 for(Player player : playing)
