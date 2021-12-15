@@ -1,5 +1,6 @@
 package me.wowitsmak.main.events;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.WorldCreator;
 import org.bukkit.block.BlockState;
@@ -42,8 +43,17 @@ public class Events implements Listener{
 		ScoreboardOwner.createScoreboard(e.getPlayer());
         Main.getScoreboardManager();
 		ScoreboardOwner.updateScoreboard();     
-        if(Bukkit.getWorld("cove") == null) {
-        	new WorldCreator("cove").createWorld();
+        if(Bukkit.getWorld("survivalmap1") == null) {
+        	new WorldCreator("survivalmap1").createWorld();
+        }
+		else if(Bukkit.getWorld("survivalmap2") == null) {
+        	new WorldCreator("survivalmap2").createWorld();
+        }
+		else if(Bukkit.getWorld("survivalmap3") == null) {
+        	new WorldCreator("survivalmap3").createWorld();
+        }
+		else if(Bukkit.getWorld("survivalmap4") == null) {
+        	new WorldCreator("survivalmap4").createWorld();
         }
     }
     
@@ -88,20 +98,40 @@ public class Events implements Listener{
 	}
     @EventHandler
     public void onPlayerMurder(PlayerDeathEvent event) {
-    		if(pm.playing.contains(event.getEntity()) && pm.playing.contains(event.getEntity().getKiller()) && Main.getRound() == 1) {
-    			Main.getPointManager().addPoints(event.getEntity().getKiller(), 500);
+    		if(pm.playing.contains(event.getEntity()) && Main.getRound() == 1) {
     			pm.playing.remove(event.getEntity());
     			pm.spectators.add(event.getEntity());
+				event.getEntity().setGameMode(GameMode.SPECTATOR);
     			Main.getScoreboardManager();
     			ScoreboardOwner.updateScoreboard();
-    			event.getEntity().getKiller().sendMessage("There are " + pm.playing.size() + " players left.");
+    			if(pm.playing.contains(event.getEntity().getKiller())) {
+    				Main.getPointManager().addPoints(event.getEntity().getKiller(), 500);
+    				event.getEntity().getKiller().sendMessage("There are " + pm.playing.size() + " players left.");
+    				if(pm.playing.size() == 1) {
+        				Main.getGameManager().setGameState(GameState.ENDGAME);
+        				event.getEntity().getKiller().sendMessage(ChatColor.GOLD + "You have won!");
+        				Bukkit.broadcastMessage(ChatColor.GOLD + "" + event.getEntity().getKiller() + " has won!");
+        				Main.getPointManager().addPoints(event.getEntity().getKiller(), 1000);
+        				Bukkit.getScheduler().cancelTasks(Main.getInstance());
+        				Bukkit.broadcastMessage(ChatColor.GREEN + event.getEntity().getKiller().getName() + " has " + Main.getPointManager().getPoints(event.getEntity().getKiller()) + " points");
+        				for(Player player : pm.spectators) {
+        					Bukkit.broadcastMessage(ChatColor.GREEN + player.getName() + " has " + Main.getPointManager().getPoints(player) + " points");
+        				}
+    				}
+    			}
+    			else {
+    				
+    			
+    			
+    			
     			if(pm.playing.size() == 1) {
     				Main.getGameManager().setGameState(GameState.ENDGAME);
-    				event.getEntity().getKiller().sendMessage(ChatColor.GOLD + "You have won!");
     				Bukkit.getScheduler().cancelTasks(Main.getInstance());
-    				Bukkit.broadcastMessage(ChatColor.GREEN + event.getEntity().getKiller().getName() + " has " + Main.getPointManager().getPoints(event.getEntity().getKiller()) + " points");
+    				Bukkit.broadcastMessage(ChatColor.GREEN + "" + event.getEntity() + " has " + Main.getPointManager().getPoints(event.getEntity()) + " points");
+    				Main.getPointManager().addPoints(event.getEntity(), 500);
     				for(Player player : pm.spectators) {
     					Bukkit.broadcastMessage(ChatColor.GREEN + player.getName() + " has " + Main.getPointManager().getPoints(player) + " points");
+    					}
     				}
     			}
     		}

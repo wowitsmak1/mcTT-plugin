@@ -3,8 +3,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -23,20 +21,7 @@ public class HungerGamesStart {
 		this.hg = new HungerGamesLootTable();
 	}
 	public void start() {
-	for(Chunk chunk : Bukkit.getWorld("cove").getLoadedChunks()) {
-		for(BlockState block : chunk.getTileEntities()){
-            if(block instanceof Chest){
-             Chest chest = (Chest) block;
-             hg.setupLoot(chest.getInventory());
-            }
 		
-		}
-		for(Entity current : Bukkit.getWorld("cove").getEntities()){//loop through the list
-            if (current instanceof Item){//make sure we aren't deleting mobs/players
-            current.remove();//remove it
-            }
-		}
-		}
 		Bukkit.getScheduler().cancelTasks(Main.getInstance());
 		for(Player player : Bukkit.getOnlinePlayers()) {
 			if(!pm.playing.contains(player)) {
@@ -50,8 +35,9 @@ public class HungerGamesStart {
 			player.setWalkSpeed(0F);
 			player.setSaturation(20);
 			player.setHealth(20);
-			pm.teleportPlayers();
+			pm.teleportPlayers(Bukkit.getWorld("survivalmap2"));
 		}
+		Main.getScoreboardManager();
 		ScoreboardOwner.updateScoreboard();
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
 			@Override
@@ -88,6 +74,8 @@ public class HungerGamesStart {
 					
 				}
 				else {
+					Main.getScoreboardManager();
+					ScoreboardOwner.updateScoreboard();
 					for(Player player : pm.playing) {
 			    		player.sendMessage(ChatColor.AQUA + "Only " + time + " seconds left");
 			    	} 
