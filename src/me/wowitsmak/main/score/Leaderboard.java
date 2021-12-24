@@ -1,8 +1,6 @@
 package me.wowitsmak.main.score;
 
 import java.util.HashMap;
-
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import me.wowitsmak.main.Main;
@@ -39,14 +37,17 @@ public class Leaderboard {
             }
             teamleaderboard.put(team, place);
         }
-        for(Player player : Bukkit.getOnlinePlayers()){
-            Integer place = Main.getTeamManager().teams.size();
-            for(Player opponent : Bukkit.getOnlinePlayers()){
+        for(Player player : Main.getPlayerManager().getParticipantsSet()){
+            Integer place = Main.getPlayerManager().getParticipantsSet().size() ;
+            for(Player opponent : Main.getPlayerManager().getParticipantsSet()){
                 if(Main.getPointManager().getPoints(player) > Main.getPointManager().getPoints(opponent) && player != opponent){
                     place = place - 1;
                 }
                 else if(Main.getPointManager().getPoints(player) == Main.getPointManager().getPoints(opponent) && player != opponent){
                     place = place - 1;
+                }
+                else {
+
                 }
             }
             playerleaderboard.put(player, place);

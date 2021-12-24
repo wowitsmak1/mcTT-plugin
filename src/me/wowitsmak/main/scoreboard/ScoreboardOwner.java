@@ -26,12 +26,13 @@ public class ScoreboardOwner {
             Score teampoints = objective.getScore(ChatColor.GREEN + "Team Points: ");
             teampoints.setScore(Main.getPointManager().getTeamPoints(Main.getTeamManager().getPlayerTeam(player)));
         }
+        
         Score placement = objective.getScore(ChatColor.YELLOW + "Your position: ");
         placement.setScore(Main.getLeaderboard().getPlayerPosition(player));
-        Score teamplacement = objective.getScore(ChatColor.RED + "Your team's position: ");
-        teamplacement.setScore(Main.getLeaderboard().getTeamPosition(Main.getTeamManager().getPlayerTeam(player)));
         Score players = objective.getScore(ChatColor.GOLD +"Players Left: ");
         players.setScore(Main.getPlayerManager().playing.size());
+        Score teamplacement = objective.getScore(ChatColor.RED + "Your team's position: ");
+        teamplacement.setScore(Main.getLeaderboard().getTeamPosition(Main.getTeamManager().getPlayerTeam(player)));
         
         player.setScoreboard(board);
     }
