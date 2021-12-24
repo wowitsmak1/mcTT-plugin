@@ -20,6 +20,7 @@ public class StopHungerGamesCommand implements CommandExecutor {
 		if(sender.isOp())
 		Main.getGameManager().setGameState(GameState.ENDGAME);
 		Main.setRound(1);
+        Main.setTime(60);
         for(Iterator<Player> iterator = Main.getPlayerManager().playing.iterator(); iterator.hasNext();) {
             Player player = iterator.next();
             Bukkit.broadcastMessage(ChatColor.GREEN + player.getName() + " has " + Main.getPointManager().getPoints(player) + " points");
@@ -40,7 +41,7 @@ public class StopHungerGamesCommand implements CommandExecutor {
 			    player.removePotionEffect(effect.getType());
         }
         Bukkit.getScheduler().cancelTasks(Main.getInstance());
-        Main.setTime(5);
+        
 		return false;
 	}
 }

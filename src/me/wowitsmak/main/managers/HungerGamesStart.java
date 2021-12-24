@@ -49,6 +49,7 @@ public class HungerGamesStart {
 				if(time == 0) {
 					cooldown = 100;
 					Main.getGameManager().setGameState(GameState.ACTIVE);
+					Bukkit.getScheduler().cancelTasks(Main.getInstance());
 					for(Player player : pm.playing) {
 			    		player.sendMessage(ChatColor.GREEN + "Starting...");
 			    		player.setWalkSpeed(0.2F);
@@ -70,7 +71,7 @@ public class HungerGamesStart {
 			    		
 			    	}
 					time = 60; 
-					Bukkit.getScheduler().cancelTasks(Main.getInstance());
+					
 					Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
 		    			@Override
 		    		    public void run() {
@@ -86,7 +87,7 @@ public class HungerGamesStart {
 		    				Bukkit.broadcastMessage(ChatColor.GREEN + "Chests refilled.");
 		    		    }
 		    		    
-		    		}, 0L, 2000);
+		    		}, 2000L, 2000);
 					
 					
 				}

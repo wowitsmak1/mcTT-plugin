@@ -18,7 +18,9 @@ public class PlayerPoints {
 		}
 	}
 	private static Map<Player, Integer> playerPoints = new HashMap<>();
-	
+	public Map<Player, Integer> getPointsList(){
+		return playerPoints;
+	}
 	public void addPoints(Player player, Integer num) {
 		playerPoints.put(player, playerPoints.get(player)+num);
 		player.sendMessage(ChatColor.GREEN + "You have gained " + num + " points.");

@@ -66,7 +66,10 @@ public class TeamStuff {
     }
     public void updateTeamPoints(HashMap<Player, Integer> team){
         for(Player player : team.keySet()){
-			team.replace(player, Main.getPointManager().getPoints(player));
+            if(Main.getPointManager().getPointsList().containsKey(player)){
+                team.replace(player, Main.getPointManager().getPoints(player));
+            }
+			
         }
     }
 }
