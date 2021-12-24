@@ -2,7 +2,6 @@ package me.wowitsmak.main.events;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.WorldCreator;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
@@ -37,33 +36,34 @@ public class Events implements Listener{
 	}
 	@EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
-        Main.getPointManager().addPlayer(e.getPlayer());
+		if(Main.getPlayerManager().offlineplayers.containsKey(e.getPlayer())){
+			Main.getPointManager().addPlayer(e.getPlayer(), Main.getPlayerManager().offlineplayers.get(e.getPlayer()));
+		}
+		else{
+			Main.getPointManager().addPlayer(e.getPlayer());
+		}
+		if(Main.getGameManager().getGameState() == GameState.ACTIVE){
+			Main.getPlayerManager().spectators.add(e.getPlayer());
+		}
 		Main.getTeamManager().addTeamPlayers();
         Main.getScoreboardManager();
 		ScoreboardOwner.createScoreboard(e.getPlayer());
         Main.getScoreboardManager();
 		ScoreboardOwner.updateScoreboard();     
-        if(Bukkit.getWorld("survivalmap1") == null) {
-        	new WorldCreator("survivalmap1").createWorld();
-        }
-		else if(Bukkit.getWorld("survivalmap2") == null) {
-        	new WorldCreator("survivalmap2").createWorld();
-        }
-		else if(Bukkit.getWorld("survivalmap3") == null) {
-        	new WorldCreator("survivalmap3").createWorld();
-        }
-		else if(Bukkit.getWorld("survivalmap4") == null) {
-        	new WorldCreator("survivalmap4").createWorld();
-        }
+        
     }
     
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e){
 		if(Main.getPlayerManager().playing.contains(e.getPlayer())){
 			Main.getPlayerManager().playing.remove(e.getPlayer());
+			Main.getPlayerManager().offlineplayers.put(e.getPlayer(), Main.getPointManager().getPoints(e.getPlayer()));
+			Main.getPointManager().removePlayer(e.getPlayer());
 		}
 		else if(Main.getPlayerManager().spectators.contains(e.getPlayer())){
 			Main.getPlayerManager().spectators.remove(e.getPlayer());
+			Main.getPlayerManager().offlineplayers.put(e.getPlayer(), Main.getPointManager().getPoints(e.getPlayer()));
+			Main.getPointManager().removePlayer(e.getPlayer());
 		}
     	Main.getScoreboardManager();
     	ScoreboardOwner.updateScoreboard();

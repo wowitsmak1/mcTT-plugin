@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.WorldCreator;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Entity;
@@ -19,6 +20,21 @@ public class ReadyWorld {
 		this.hg = new HungerGamesLootTable();
 	}
     public void start(String str){
+    if(Bukkit.getWorld("survivalmap1") == null) {
+    	new WorldCreator("survivalmap1").createWorld();
+    }
+	else if(Bukkit.getWorld("survivalmap2") == null) {
+    	new WorldCreator("survivalmap2").createWorld();
+    }
+	else if(Bukkit.getWorld("survivalmap3") == null) {
+    	new WorldCreator("survivalmap3").createWorld();
+    }
+	else if(Bukkit.getWorld("survivalmap4") == null) {
+    	new WorldCreator("survivalmap4").createWorld();
+    }
+    else if(Bukkit.getWorld(str) == null){
+        new WorldCreator(str).createWorld();
+    }
     World world = Bukkit.getWorld(str);
     
     if(str == "survivalmap2"){

@@ -2,20 +2,28 @@ package me.wowitsmak.main.score;
 
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import me.wowitsmak.main.Main;
 
 public class Leaderboard {
-    private HashMap<HashMap<Player,Integer>,Integer> leaderboard = new HashMap<>();
+    private HashMap<HashMap<Player,Integer>,Integer> teamleaderboard = new HashMap<>();
+    private HashMap<Player,Integer> playerleaderboard = new HashMap<>();
     public Leaderboard(){
         
     }
-    public HashMap<HashMap<Player,Integer>,Integer> getLeaderboard() {
-        return leaderboard;
+    public HashMap<HashMap<Player,Integer>,Integer> getTeamLeaderboard() {
+        return teamleaderboard;
+    }
+    public HashMap<Player,Integer> getPlayerLeaderBoard(){
+        return playerleaderboard;
+    }
+    public Integer getPlayerPosition(Player player){
+        return playerleaderboard.get(player);
     }
     public Integer getTeamPosition(HashMap<Player, Integer> team){
-        return leaderboard.get(team);
+        return teamleaderboard.get(team);
     }
 
     public void updateLeaderboard(){
@@ -29,7 +37,19 @@ public class Leaderboard {
                     place = place - 1;
                 }
             }
-            leaderboard.put(team, place);
+            teamleaderboard.put(team, place);
+        }
+        for(Player player : Bukkit.getOnlinePlayers()){
+            Integer place = Main.getTeamManager().teams.size();
+            for(Player opponent : Bukkit.getOnlinePlayers()){
+                if(Main.getPointManager().getPoints(player) > Main.getPointManager().getPoints(opponent) && player != opponent){
+                    place = place - 1;
+                }
+                else if(Main.getPointManager().getPoints(player) == Main.getPointManager().getPoints(opponent) && player != opponent){
+                    place = place - 1;
+                }
+            }
+            playerleaderboard.put(player, place);
         }
     }
 }

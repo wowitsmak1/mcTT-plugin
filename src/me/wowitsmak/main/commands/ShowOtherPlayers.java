@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 public class ShowOtherPlayers implements CommandExecutor {
 
-
+    @Deprecated
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 		if(sender.isOp()){

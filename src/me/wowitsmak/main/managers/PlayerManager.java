@@ -20,7 +20,7 @@ public class PlayerManager {
     		moderators.add(player.getPlayer());
     	}
 	}
-	Collection<? extends Player> onlinePlayerList = Bukkit.getServer().getOnlinePlayers();
+	public Collection<? extends Player> onlinePlayerList = Bukkit.getServer().getOnlinePlayers();
 	public void teleportPlayers(World world)
 	{
 	Integer i = 0;

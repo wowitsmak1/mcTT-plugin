@@ -9,7 +9,7 @@ import me.wowitsmak.main.Main;
 
 public class HideOtherPlayers implements CommandExecutor {
 
-
+    @Deprecated
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 		if(sender.isOp()){
