@@ -92,7 +92,7 @@ public class Events implements Listener{
     }
 	@EventHandler
 	public void onPlayerDamage(EntityDamageByEntityEvent event){
-		if(Main.getGameManager().getGameState().equals(GameState.STARTING))
+		if(Main.getGameManager().getGameState().equals(GameState.STARTING) && !event.getDamager().isOp() || Main.getCooldown() > 0)
 		event.setCancelled(true);
 		if(event.getEntity() instanceof Player){
 			if(event.getDamager() instanceof Player){

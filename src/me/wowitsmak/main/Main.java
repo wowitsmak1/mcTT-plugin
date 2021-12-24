@@ -82,6 +82,8 @@ public class Main extends JavaPlugin {
 	public static void setRound(Integer num){ game = num; }
 	public static Integer getTime(){ return hgstart.time; }
 	public static void setTime(Integer num){ hgstart.time = num; }
+	public static Integer getCooldown(){ return hgstart.cooldown; }
+	public static void setCooldown(Integer num) {hgstart.cooldown = num; }
 	public static ReadyWorld getHungerGamesWorld() { return hgworldpreparer; }	
 	public static Leaderboard getLeaderboard() { return leaderboard; }
 }

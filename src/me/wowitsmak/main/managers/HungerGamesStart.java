@@ -15,7 +15,8 @@ import net.md_5.bungee.api.ChatColor;
 
 public class HungerGamesStart {
 	PlayerManager pm = Main.getPlayerManager();
-	public Integer time = 5;
+	public Integer time = 60;
+	public Integer cooldown = 100;
 	HungerGamesLootTable hg;
 	public HungerGamesStart() {
 		this.pm = Main.getPlayerManager();
@@ -46,17 +47,30 @@ public class HungerGamesStart {
 			@Override
 		    public void run() {
 				if(time == 0) {
+					cooldown = 100;
 					Main.getGameManager().setGameState(GameState.ACTIVE);
 					for(Player player : pm.playing) {
 			    		player.sendMessage(ChatColor.GREEN + "Starting...");
 			    		player.setWalkSpeed(0.2F);
 			    		for (PotionEffect effect : player.getActivePotionEffects())
 			    	        player.removePotionEffect(effect.getType());
-			    		player.sendMessage(ChatColor.GREEN + "Your current game state is " + ChatColor.GOLD + Main.getGameManager().getGameState());
-			    		
+			    		player.sendMessage(ChatColor.GOLD + "Go!");
+			    		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
+							@Override
+							public void run() {
+								   if(cooldown == 0){
+									   Bukkit.getServer().broadcastMessage(ChatColor.RED + "Cooldown is now off.");
+								   }
+								   else{
+									   cooldown = cooldown - 1;
+								   }
+							}
+							
+						}, 0L, 20);
 			    		
 			    	}
-					time = 5; 
+					time = 60; 
+					Bukkit.getScheduler().cancelTasks(Main.getInstance());
 					Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
 		    			@Override
 		    		    public void run() {
@@ -73,7 +87,7 @@ public class HungerGamesStart {
 		    		    }
 		    		    
 		    		}, 0L, 2000);
-					Bukkit.getScheduler().cancelTasks(Main.getInstance());
+					
 					
 				}
 				else {

@@ -31,12 +31,13 @@ public class StopHungerGamesCommand implements CommandExecutor {
         }
         for(Player player : Bukkit.getOnlinePlayers()){
             if(!player.isOp()){
-                Main.getPlayerManager().spectators.add(player);
-                player.setSaturation(20);
-			    player.setHealth(20);
-                for (PotionEffect effect : player.getActivePotionEffects())
-			        player.removePotionEffect(effect.getType());
+                Main.getPlayerManager().spectators.add(player);    
             }
+            player.setSaturation(20);
+			player.setHealth(20);
+            player.setWalkSpeed(0.2F);
+			for (PotionEffect effect : player.getActivePotionEffects())
+			    player.removePotionEffect(effect.getType());
         }
         Bukkit.getScheduler().cancelTasks(Main.getInstance());
         Main.setTime(5);
