@@ -14,6 +14,7 @@ public class ScoreboardOwner {
 
 	@SuppressWarnings("deprecation")
     public static void createScoreboard(Player player){
+        Main.getLeaderboard().updateLeaderboard();
 		ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard board = manager.getNewScoreboard();
         Objective objective = board.registerNewObjective("Stats", "dummy");
@@ -32,6 +33,7 @@ public class ScoreboardOwner {
     }
     
     public static void updateScoreboard(){
+        Main.getLeaderboard().updateLeaderboard();
         for(Player online : Bukkit.getOnlinePlayers()){
             Score score = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.AQUA+ "Points:");
             score.setScore(Main.getPointManager().getPoints(online));
