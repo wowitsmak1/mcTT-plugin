@@ -1,5 +1,7 @@
 package me.wowitsmak.main.commands;
 
+import java.util.Iterator;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -18,7 +20,8 @@ public class StopHungerGamesCommand implements CommandExecutor {
 		if(sender.isOp())
 		Main.getGameManager().setGameState(GameState.ENDGAME);
 		Main.setRound(1);
-        for(Player player : Main.getPlayerManager().playing) {
+        for(Iterator<Player> iterator = Main.getPlayerManager().playing.iterator(); iterator.hasNext();) {
+            Player player = iterator.next();
             Bukkit.broadcastMessage(ChatColor.GREEN + player.getName() + " has " + Main.getPointManager().getPoints(player) + " points");
             Main.getPlayerManager().playing.remove(player);
         }

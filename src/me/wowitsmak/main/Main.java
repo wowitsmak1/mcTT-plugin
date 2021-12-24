@@ -3,6 +3,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.wowitsmak.main.loot_tables.HungerGamesLootTable;
+import me.wowitsmak.main.score.Leaderboard;
 import me.wowitsmak.main.score.PlayerPoints;
 import me.wowitsmak.main.scoreboard.ScoreboardOwner;
 import me.wowitsmak.main.commands.AddToTeam;
@@ -29,6 +30,7 @@ public class Main extends JavaPlugin {
 	private static TeamStuff teamStuff;
 	private static ScoreboardOwner scmanager;
 	private static Main instance;
+	private static Leaderboard leaderboard;
 	public Main() {
 		Main.scmanager = new ScoreboardOwner();
 		Main.teamStuff = new TeamStuff();
@@ -37,6 +39,7 @@ public class Main extends JavaPlugin {
 		Main.playerPoints = new PlayerPoints();
 		Main.hgstart = new HungerGamesStart();
 		Main.hgworldpreparer = new ReadyWorld();
+		Main.leaderboard = new Leaderboard();
 	}
     @Override
     public void onEnable() {
@@ -80,4 +83,5 @@ public class Main extends JavaPlugin {
 	public static Integer getTime(){ return hgstart.time; }
 	public static void setTime(Integer num){ hgstart.time = num; }
 	public static ReadyWorld getHungerGamesWorld() { return hgworldpreparer; }	
+	public static Leaderboard getLeaderboard() { return leaderboard; }
 }

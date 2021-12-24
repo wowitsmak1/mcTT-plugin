@@ -24,7 +24,7 @@ public class ReadyWorld {
     if(str == "survivalmap2"){
         locations.clear();
         locations.add(new Location(world, 5.5, 67, 46.5,-152, 0));
-		locations.add(new Location(world, 16.5, 67, 48.5, 180, 0));
+		locations.add(new Location(world, 16.5, 67, 49.5, 180, 0));
         locations.add(new Location(world, 19.5, 67, 48.5, 175, 0));
         locations.add(new Location(world, 22.5, 67, 48.5, -917, 0));
         locations.add(new Location(world, 25.5, 67, 47.50, -928, 0));

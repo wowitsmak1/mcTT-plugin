@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import me.wowitsmak.main.Main;
 import me.wowitsmak.main.scoreboard.ScoreboardOwner;
+import net.md_5.bungee.api.ChatColor;
 
 public class PlayerPoints {
 
@@ -20,10 +21,12 @@ public class PlayerPoints {
 	
 	public void addPoints(Player player, Integer num) {
 		playerPoints.put(player, playerPoints.get(player)+num);
+		player.sendMessage(ChatColor.GREEN + "You have gained " + num + " points.");
 		ScoreboardOwner.updateScoreboard();
 	}
 	public void removePoints(Player player, Integer num) {
 		playerPoints.put(player, playerPoints.get(player)-num);
+		player.sendMessage(ChatColor.RED + "You have lost " + num + " points.");
 		ScoreboardOwner.updateScoreboard();
 	}
 	public Integer getPoints(Player player) {

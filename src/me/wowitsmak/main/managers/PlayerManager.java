@@ -1,6 +1,8 @@
 package me.wowitsmak.main.managers;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -11,6 +13,7 @@ public class PlayerManager {
 	public Set<Player> moderators = new HashSet<>();
 	public Set<Player> spectators = new HashSet<>();
 	public Set<Player> playing = new HashSet<>();
+	public Map<OfflinePlayer, Integer> offlineplayers = new HashMap<>();
 	//private static Map<Player, Integer> playerButtonTotal = new HashMap<>();
 	public PlayerManager() {
 		for (OfflinePlayer player : Bukkit.getServer().getOperators()) {

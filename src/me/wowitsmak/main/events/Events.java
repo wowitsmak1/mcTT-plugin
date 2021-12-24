@@ -59,6 +59,12 @@ public class Events implements Listener{
     
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e){
+		if(Main.getPlayerManager().playing.contains(e.getPlayer())){
+			Main.getPlayerManager().playing.remove(e.getPlayer());
+		}
+		else if(Main.getPlayerManager().spectators.contains(e.getPlayer())){
+			Main.getPlayerManager().spectators.remove(e.getPlayer());
+		}
     	Main.getScoreboardManager();
     	ScoreboardOwner.updateScoreboard();
     }
@@ -86,6 +92,8 @@ public class Events implements Listener{
     }
 	@EventHandler
 	public void onPlayerDamage(EntityDamageByEntityEvent event){
+		if(Main.getGameManager().getGameState().equals(GameState.STARTING))
+		event.setCancelled(true);
 		if(event.getEntity() instanceof Player){
 			if(event.getDamager() instanceof Player){
 				Player killer = (Player) event.getDamager();
@@ -102,11 +110,12 @@ public class Events implements Listener{
     			pm.playing.remove(event.getEntity());
     			pm.spectators.add(event.getEntity());
 				event.getEntity().setGameMode(GameMode.SPECTATOR);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> event.getEntity().spigot().respawn(), 2);
     			Main.getScoreboardManager();
     			ScoreboardOwner.updateScoreboard();
     			if(pm.playing.contains(event.getEntity().getKiller())) {
     				Main.getPointManager().addPoints(event.getEntity().getKiller(), 500);
-    				event.getEntity().getKiller().sendMessage("There are " + pm.playing.size() + " players left.");
+    				Bukkit.getServer().broadcastMessage("There are " + pm.playing.size() + " players left.");
     				if(pm.playing.size() == 1) {
         				Main.getGameManager().setGameState(GameState.ENDGAME);
         				event.getEntity().getKiller().sendMessage(ChatColor.GOLD + "You have won!");
@@ -118,12 +127,20 @@ public class Events implements Listener{
         					Bukkit.broadcastMessage(ChatColor.GREEN + player.getName() + " has " + Main.getPointManager().getPoints(player) + " points");
         				}
     				}
+					else if(pm.playing.size() == 2){
+						Player player1 = pm.playing.iterator().next();
+						pm.playing.iterator().remove();
+						Player player2 = pm.playing.iterator().next();
+						if(Main.getTeamManager().getPlayerTeam(player1) == Main.getTeamManager().getPlayerTeam(player2)){
+	
+						}
+						else{
+							pm.playing.add(player1);
+							pm.playing.add(player2);
+						}
+					}
     			}
     			else {
-    				
-    			
-    			
-    			
     			if(pm.playing.size() == 1) {
     				Main.getGameManager().setGameState(GameState.ENDGAME);
     				Bukkit.getScheduler().cancelTasks(Main.getInstance());
@@ -133,7 +150,23 @@ public class Events implements Listener{
     					Bukkit.broadcastMessage(ChatColor.GREEN + player.getName() + " has " + Main.getPointManager().getPoints(player) + " points");
     					}
     				}
-    			}
-    		}
-    	}
-    }
+				else if(pm.playing.size() == 2){
+					Player player1 = pm.playing.iterator().next();
+					pm.playing.iterator().remove();
+					Player player2 = pm.playing.iterator().next();
+					if(Main.getTeamManager().getPlayerTeam(player1) == Main.getTeamManager().getPlayerTeam(player2)){
+
+					}
+					else{
+						pm.playing.add(player1);
+						pm.playing.add(player2);
+					}
+				}
+    			
+			}
+    		
+		}
+    	
+	}
+    
+}

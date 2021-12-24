@@ -31,11 +31,11 @@ public class HungerGamesLootTable {
 		List<String> legendaryItems = config.getStringList("LegendaryItems");
 		Random rand = new Random();
 		int rarity = rand.nextInt(20);
-		if(rarity <= 10) {
+		if(rarity <= 15) {
 			ItemStack commonItem = new ItemStack(Material.getMaterial(commonItems.get(rand.nextInt(commonItems.size())).toUpperCase())); 
 			inv.setItem(getEmptyItemSlot(inv), commonItem);
 		}
-		else if (rarity <= 17 && rarity > 10) {
+		else if (rarity <= 19 && rarity > 15) {
 			Material mat = Material.getMaterial(rareItems.get(rand.nextInt(rareItems.size())).toUpperCase());
 			if(mat.isEdible() && !mat.equals(Material.GOLDEN_APPLE) && !mat.equals(Material.ENCHANTED_GOLDEN_APPLE)){
 				ItemStack rareItem = new ItemStack(mat, 16); 
@@ -44,15 +44,15 @@ public class HungerGamesLootTable {
 			else {
 				ItemStack rareItem = new ItemStack(mat); 
 				final String typeNameString = rareItem.getType().name();
-				if(rand.nextBoolean() == true){
+				if(rand.nextInt(10) == 1){
 					if (typeNameString.endsWith("_HELMET")
 					|| typeNameString.endsWith("_CHESTPLATE")
 					|| typeNameString.endsWith("_LEGGINGS")
 					|| typeNameString.endsWith("_BOOTS")) {
-				rareItem.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, ThreadLocalRandom.current().nextInt(1, 4));
+				rareItem.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, ThreadLocalRandom.current().nextInt(1, 2));
 				}
 				else if(typeNameString.endsWith("_SWORD")){
-					rareItem.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, ThreadLocalRandom.current().nextInt(1, 6));
+					rareItem.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, ThreadLocalRandom.current().nextInt(1, 2));
 				}
 				}
 				inv.setItem(getEmptyItemSlot(inv), rareItem);
@@ -66,7 +66,9 @@ public class HungerGamesLootTable {
 		                || typeNameString.endsWith("_CHESTPLATE")
 		                || typeNameString.endsWith("_LEGGINGS")
 		                || typeNameString.endsWith("_BOOTS")) {
+				if(rand.nextInt(5) == 1){
 		        	legendaryItem.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, ThreadLocalRandom.current().nextInt(1, 4));
+							}
 		            }
 			inv.setItem(getEmptyItemSlot(inv), legendaryItem);
 		}

@@ -22,11 +22,11 @@ public class GameManager {
 				hgameStart.start();
 			}
 			case ACTIVE:
-				
+						
 			case ENDGAME:
 			case INGAME:
 			default:
-		}
+		} 
 	
 	}
 	public GameState getGameState() {

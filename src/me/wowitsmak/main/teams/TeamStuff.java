@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import me.wowitsmak.main.Main;
 
 public class TeamStuff {
-    private HashMap<String,HashMap<Player,Integer>> teams = new HashMap<>();
+    public HashMap<String,HashMap<Player,Integer>> teams = new HashMap<>();
     public TeamStuff(){
         
     }
