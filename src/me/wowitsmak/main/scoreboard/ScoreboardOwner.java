@@ -21,6 +21,7 @@ public class ScoreboardOwner {
         objective.setDisplayName(ChatColor.BLUE + "Stats");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         Score score = objective.getScore(ChatColor.AQUA+ "Points: ");
+        score.setScore(Main.getPointManager().getPoints(player));
         if(Main.getTeamManager().getPlayerTeam(player) != null){
             Score teampoints = objective.getScore(ChatColor.GREEN + "Team Points: ");
             teampoints.setScore(Main.getPointManager().getTeamPoints(Main.getTeamManager().getPlayerTeam(player)));
@@ -32,17 +33,16 @@ public class ScoreboardOwner {
         Score players = objective.getScore(ChatColor.GOLD +"Players Left: ");
         players.setScore(Main.getPlayerManager().playing.size());
         
-        score.setScore(Main.getPointManager().getPoints(player));
         player.setScoreboard(board);
     }
     
     public static void updateScoreboard(){
         Main.getLeaderboard().updateLeaderboard();
         for(Player player : Bukkit.getOnlinePlayers()){
-            Score score = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.AQUA+ "Points:");
+            Score score = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.AQUA+ "Points: ");
             score.setScore(Main.getPointManager().getPoints(player));
             if(Main.getTeamManager().getPlayerTeam(player) != null){
-            Score teampoints = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GREEN + "Team Points:");
+            Score teampoints = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GREEN + "Team Points: ");
             teampoints.setScore(Main.getPointManager().getTeamPoints(Main.getTeamManager().getPlayerTeam(player)));
             Score placement = player.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.YELLOW + "Your position: ");
             placement.setScore(Main.getLeaderboard().getPlayerPosition(player));
