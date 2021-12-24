@@ -32,7 +32,7 @@ public class PlayerManager {
 	}
 	private void updateParticipantsList(){
 		for(Player player : Bukkit.getOnlinePlayers()){
-			if(player.isWhitelisted() && !player.isOp() && !participants.contains(player)){
+			if(!participants.contains(player)){
 				participants.add(player);
 			}
 		}
