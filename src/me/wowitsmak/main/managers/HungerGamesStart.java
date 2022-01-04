@@ -62,7 +62,9 @@ public class HungerGamesStart {
 							public void run() {
 								   if(cooldown == 0){
 									   Bukkit.getServer().broadcastMessage(ChatColor.RED + "Cooldown is now off.");
+									   cooldown = cooldown - 1;
 								   }
+								   else if (cooldown == -1){}
 								   else{
 									   cooldown = cooldown - 1;
 								   }
