@@ -120,7 +120,8 @@ public class Events implements Listener{
         				Main.getGameManager().setGameState(GameState.ENDGAME);
         				event.getEntity().getKiller().sendMessage(ChatColor.GOLD + "You have won!");
         				Bukkit.broadcastMessage(ChatColor.GOLD + "" + event.getEntity().getKiller().getName() + " has won!");
-        				Main.getPointManager().addPoints(event.getEntity().getKiller(), 1000);
+        				Main.getPointManager().addPoints(event.getEntity().getKiller(), 500);
+						Main.getPointManager().addPoints(Main.getTeamManager().getTeammate(event.getEntity()), 500);
         				Bukkit.getScheduler().cancelTasks(Main.getInstance());
         				Bukkit.broadcastMessage(ChatColor.GREEN + event.getEntity().getKiller().getName() + " has " + Main.getPointManager().getPoints(event.getEntity().getKiller()) + " points");
         				for(Player player : pm.spectators) {
@@ -132,7 +133,15 @@ public class Events implements Listener{
 						pm.playing.iterator().remove();
 						Player player2 = pm.playing.iterator().next();
 						if(Main.getTeamManager().getPlayerTeam(player1) == Main.getTeamManager().getPlayerTeam(player2)){
-	
+							event.getEntity().getKiller().sendMessage(ChatColor.GOLD + "You have won!");
+        					Bukkit.broadcastMessage(ChatColor.GOLD + "Players " + player1.getName() + "and " + player2.getName() + " have won!");
+        					Main.getPointManager().addPoints(player1, 500);
+							Main.getPointManager().addPoints(player2, 500);
+        					Bukkit.getScheduler().cancelTasks(Main.getInstance());
+        					Bukkit.broadcastMessage(ChatColor.GREEN + event.getEntity().getKiller().getName() + " has " + Main.getPointManager().getPoints(event.getEntity().getKiller()) + " points");
+							for(Player player : pm.spectators) {
+								Bukkit.broadcastMessage(ChatColor.GREEN + player.getName() + " has " + Main.getPointManager().getPoints(player) + " points");
+							}
 						}
 						else{
 							pm.playing.add(player1);
@@ -143,24 +152,32 @@ public class Events implements Listener{
     			else {
     			if(pm.playing.size() == 1) {
     				Main.getGameManager().setGameState(GameState.ENDGAME);
-    				Bukkit.getScheduler().cancelTasks(Main.getInstance());
-    				Bukkit.broadcastMessage(ChatColor.GREEN + "" + event.getEntity() + " has " + Main.getPointManager().getPoints(event.getEntity()) + " points");
-    				Main.getPointManager().addPoints(event.getEntity(), 500);
-    				for(Player player : pm.spectators) {
-    					Bukkit.broadcastMessage(ChatColor.GREEN + player.getName() + " has " + Main.getPointManager().getPoints(player) + " points");
-    					}
+        				event.getEntity().getKiller().sendMessage(ChatColor.GOLD + "You have won!");
+        				Bukkit.broadcastMessage(ChatColor.GOLD + "" + event.getEntity().getKiller().getName() + " has won!");
+        				Main.getPointManager().addPoints(event.getEntity().getKiller(), 500);
+						Main.getPointManager().addPoints(Main.getTeamManager().getTeammate(event.getEntity()), 500);
+        				Bukkit.getScheduler().cancelTasks(Main.getInstance());
+        				Bukkit.broadcastMessage(ChatColor.GREEN + event.getEntity().getKiller().getName() + " has " + Main.getPointManager().getPoints(event.getEntity().getKiller()) + " points");
+        				for(Player player : pm.spectators) {
+        					Bukkit.broadcastMessage(ChatColor.GREEN + player.getName() + " has " + Main.getPointManager().getPoints(player) + " points");
+        				}
     				}
 				else if(pm.playing.size() == 2){
 					Player player1 = pm.playing.iterator().next();
-					pm.playing.iterator().remove();
-					Player player2 = pm.playing.iterator().next();
-					if(Main.getTeamManager().getPlayerTeam(player1) == Main.getTeamManager().getPlayerTeam(player2)){
-
-					}
-					else{
-						pm.playing.add(player1);
-						pm.playing.add(player2);
-					}
+						pm.playing.iterator().remove();
+						Player player2 = pm.playing.iterator().next();
+						if(Main.getTeamManager().getPlayerTeam(player1) == Main.getTeamManager().getPlayerTeam(player2)){
+							event.getEntity().getKiller().sendMessage(ChatColor.GOLD + "You have won!");
+        					Bukkit.broadcastMessage(ChatColor.GOLD + "Players " + player1.getName() + "and " + player2.getName() + " have won!");
+        					Main.getPointManager().addPoints(player1, 500);
+							Main.getPointManager().addPoints(player2, 500);
+        					Bukkit.getScheduler().cancelTasks(Main.getInstance());
+        					Bukkit.broadcastMessage(ChatColor.GREEN + event.getEntity().getKiller().getName() + " has " + Main.getPointManager().getPoints(event.getEntity().getKiller()) + " points");
+						}
+						else{
+							pm.playing.add(player1);
+							pm.playing.add(player2);
+						}
 				}
     			
 			}

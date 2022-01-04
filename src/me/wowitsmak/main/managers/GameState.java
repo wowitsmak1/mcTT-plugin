@@ -6,5 +6,6 @@ public enum GameState {
     ACTIVE,
     STARTING,
     INGAME,
-    ENDGAME
+    ENDGAME,
+    PREPARING
 }

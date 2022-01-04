@@ -13,6 +13,7 @@ import me.wowitsmak.main.commands.ShowOtherPlayers;
 import me.wowitsmak.main.commands.StartHungerGamesCommand;
 import me.wowitsmak.main.commands.StopHungerGamesCommand;
 import me.wowitsmak.main.events.Events;
+import me.wowitsmak.main.managers.FindTheButtonStart;
 import me.wowitsmak.main.managers.GameManager;
 import me.wowitsmak.main.managers.HungerGamesStart;
 import me.wowitsmak.main.managers.PlayerManager;
@@ -22,6 +23,7 @@ import me.wowitsmak.main.worlds.ReadyWorld;
 
 public class Main extends JavaPlugin {
     private static Integer game = 1;
+	private static FindTheButtonStart fButtonStart;
 	private static GameManager gameManager;
 	private static PlayerManager playerManager;
 	private static HungerGamesStart hgstart;
@@ -86,4 +88,5 @@ public class Main extends JavaPlugin {
 	public static void setCooldown(Integer num) {hgstart.cooldown = num; }
 	public static ReadyWorld getHungerGamesWorld() { return hgworldpreparer; }	
 	public static Leaderboard getLeaderboard() { return leaderboard; }
+	public static FindTheButtonStart getFindTheButtonStart() { return fButtonStart; }
 }

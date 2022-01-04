@@ -117,6 +117,11 @@ public class ReadyWorld {
         locations.add(new Location(world, -9.5, 72, 25.5, 540, 0));
         locations.add(new Location(world, -9.5, 72, 25.5, 540, 0));
     }
+    else if(str == "button"){
+        locations.clear();
+        locations.add(new Location(world, 65, 4, 256, -90, 0));
+    }
+    if(str != "button"){
         for(Chunk chunk : world.getLoadedChunks()) {
             for(BlockState block : chunk.getTileEntities()){
                 if(block instanceof Chest){
@@ -125,6 +130,7 @@ public class ReadyWorld {
                 }
             }
         }
+    }
     for(Entity current : world.getEntities()){
         if (current instanceof Item){
             current.remove();

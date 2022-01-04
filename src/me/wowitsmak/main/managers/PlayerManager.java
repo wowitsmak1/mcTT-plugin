@@ -41,10 +41,15 @@ public class PlayerManager {
 	public void teleportPlayers(World world)
 	{
 	Integer i = 0;
-	for(Player player : playing)
+	for(Player player : participants)
 	{
+	if(Main.getHungerGamesWorld().locations.get(i).getWorld().getName() == "button"){
+		player.teleport(Main.getHungerGamesWorld().locations.get(0));
+	}
+	else{
 	player.teleport(Main.getHungerGamesWorld().locations.get(i));
 	i = i + 1;
+	}
 	}
 	}
 }

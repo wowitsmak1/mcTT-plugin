@@ -23,9 +23,10 @@ public class HungerGamesStart {
 		this.hg = new HungerGamesLootTable();
 	}
 	public void start() {
-		
+		Main.getGameManager().setGameState(GameState.PREPARING);
+		Main.setRound(1);
 		Bukkit.getScheduler().cancelTasks(Main.getInstance());
-		for(Player player : Bukkit.getOnlinePlayers()) {
+		for(Player player : Main.getPlayerManager().getParticipantsSet()) {
 			if(!pm.playing.contains(player)) {
 				pm.playing.add(player);
 			}

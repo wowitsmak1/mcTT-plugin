@@ -56,6 +56,16 @@ public class TeamStuff {
         }
         }
     }
+    public Player getTeammate(Player player){
+        HashMap<Player, Integer> playerteam = Main.getTeamManager().getTeam((Main.getTeamManager().getPlayerTeam(player)));
+        if(playerteam.keySet().iterator().next() != player){
+            return playerteam.keySet().iterator().next();
+        }
+        else{
+            playerteam.keySet().iterator().remove();
+            return playerteam.keySet().iterator().next();
+        }
+    }
     public HashMap<Player, Integer> getTeam(String str){
         updateTeamPoints(teams.get(str));
         return teams.get(str);
