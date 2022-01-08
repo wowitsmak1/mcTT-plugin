@@ -18,8 +18,8 @@ public class StopFindTheButtonCommand implements CommandExecutor {
     @Override
 	public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 		if(sender.isOp())
+        Main.setRound(2);
 		Main.getGameManager().setGameState(GameState.ENDGAME);
-		Main.setRound(2);
         Main.setTime(60);
         for(Iterator<Player> iterator = Main.getPlayerManager().playing.iterator(); iterator.hasNext();) {
             Player player = iterator.next();

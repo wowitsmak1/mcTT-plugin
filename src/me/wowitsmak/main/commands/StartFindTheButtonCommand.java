@@ -12,8 +12,8 @@ public class StartFindTheButtonCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 		if(sender.isOp())
-		Main.getGameManager().setGameState(GameState.STARTING);
 		Main.setRound(2);
+		Main.getGameManager().setGameState(GameState.STARTING);
 		return false;
 	}
 
