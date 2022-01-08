@@ -52,11 +52,10 @@ public class HungerGamesStart {
 					Main.getGameManager().setGameState(GameState.ACTIVE);
 					Bukkit.getScheduler().cancelTasks(Main.getInstance());
 					for(Player player : pm.playing) {
-			    		player.sendMessage(ChatColor.GREEN + "Starting...");
 			    		player.setWalkSpeed(0.2F);
 			    		for (PotionEffect effect : player.getActivePotionEffects())
 			    	        player.removePotionEffect(effect.getType());
-			    		player.sendMessage(ChatColor.GOLD + "Go!");
+							player.sendTitle(ChatColor.GREEN + "The game has started!", ChatColor.YELLOW + "Let's go champ!", 1, 20, 1);
 			    		Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getInstance(), new Runnable() {
 							@Override
 							public void run() {
@@ -98,7 +97,7 @@ public class HungerGamesStart {
 					Main.getScoreboardManager();
 					ScoreboardOwner.updateScoreboard();
 					for(Player player : pm.playing) {
-			    		player.sendMessage(ChatColor.AQUA + "Only " + time + " seconds left");
+			    		player.sendTitle(ChatColor.GOLD + "Only " + time.toString() + " left!", ChatColor.YELLOW + "Be ready!", 1, 20, 1);
 			    	} 
 					time = time - 1;
 				}

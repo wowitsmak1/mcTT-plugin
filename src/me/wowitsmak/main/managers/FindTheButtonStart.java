@@ -2,7 +2,6 @@ package me.wowitsmak.main.managers;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -21,9 +20,7 @@ public class FindTheButtonStart {
                 Main.getPlayerManager().playing.add(player);
             }
         }
-        if(Bukkit.getWorld("button") == null) {
-            new WorldCreator("button").createWorld();
-        }
+        Main.getHungerGamesWorld().start("button");
         for(Player player : Main.getPlayerManager().getParticipantsSet()) {
 			player.getInventory().clear();
 			player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 100000, true, false));
@@ -47,11 +44,10 @@ public class FindTheButtonStart {
 					Main.getGameManager().setGameState(GameState.ACTIVE);
 					Bukkit.getScheduler().cancelTasks(Main.getInstance());
 					for(Player player : Main.getPlayerManager().getParticipantsSet()) {
-			    		player.sendMessage(ChatColor.GREEN + "Starting...");
 			    		player.setWalkSpeed(0.2F);
 			    		for (PotionEffect effect : player.getActivePotionEffects())
 			    	        player.removePotionEffect(effect.getType());
-			    		player.sendMessage(ChatColor.GOLD + "Go!");
+							player.sendTitle(ChatColor.GREEN + "The game has started!", ChatColor.YELLOW + "Let's go champ!", 1, 20, 1);
 			    	}
 					time = 60; 
 				}
@@ -59,7 +55,7 @@ public class FindTheButtonStart {
 					Main.getScoreboardManager();
 					ScoreboardOwner.updateScoreboard();
 					for(Player player : Main.getPlayerManager().getParticipantsSet()) {
-			    		player.sendMessage(ChatColor.AQUA + "Only " + time + " seconds left");
+			    		player.sendTitle(ChatColor.GOLD + "Only " + time.toString() + " left!", ChatColor.YELLOW + "Be ready!", 1, 20, 1);
 			    	} 
 					time = time - 1;
 				}

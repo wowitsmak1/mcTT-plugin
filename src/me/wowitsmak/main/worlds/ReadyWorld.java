@@ -11,6 +11,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
+
 import me.wowitsmak.main.loot_tables.HungerGamesLootTable;
 
 public class ReadyWorld {
@@ -19,6 +20,7 @@ public class ReadyWorld {
 	public ReadyWorld() {
 		this.hg = new HungerGamesLootTable();
 	}
+
     public void start(String str){
     if(Bukkit.getWorld("survivalmap1") == null) {
     	new WorldCreator("survivalmap1").createWorld();
@@ -34,6 +36,9 @@ public class ReadyWorld {
     }
     else if(Bukkit.getWorld(str) == null){
         new WorldCreator(str).createWorld();
+    }
+    else if(Bukkit.getWorld("button") == null) {
+        new WorldCreator("button").createWorld();
     }
     World world = Bukkit.getWorld(str);
     
@@ -119,7 +124,31 @@ public class ReadyWorld {
     }
     else if(str == "button"){
         locations.clear();
-        locations.add(new Location(world, 65, 4, 256, -90, 0));
+        locations.add(new Location(world, 65.5, 4, 256.5, -90, 0));
+        locations.add(new Location(world, 98.5, 4, 195.5, 180, 0));
+        locations.add(new Location(world, -10.5, 4, 202.5, 180, 0));
+        locations.add(new Location(world, -21.5, 11, 168.5, 180, 0));
+        locations.add(new Location(world, 16.50, 4, 162.5, 180, 0));
+        locations.add(new Location(world, 48.5, 4, 181.5, 180, 0));
+        locations.add(new Location(world, 119.5, 4, 152.5, 180, 0));
+        locations.add(new Location(world, 53.5, 4, 154.5, 180, 0));
+        locations.add(new Location(world, -59.5, 5, 149.5, 180, 0));
+        locations.add(new Location(world, -59.5, 4, 123.5, 180, 0));
+        locations.add(new Location(world, 24.5, 4, 128.5, 180, 0));
+        locations.add(new Location(world, 25.5, 4, 126.5, 180, 0));
+        locations.add(new Location(world, 71.5, 4, 138.5, 180, 0));
+        locations.add(new Location(world, 138.5, 4, 126.5, -90, 0));
+        locations.add(new Location(world, 142.5, 9, 100.5, 180, 0));
+        locations.add(new Location(world, 111.5, 7, 106.5, 180, 0));
+        locations.add(new Location(world, 76.5, 4, 107.5, 180, 0));
+        locations.add(new Location(world, 37.5, 4, 110.5, 0, 0));
+        locations.add(new Location(world, 53.5, 5, 89.5, -900, 0));
+        locations.add(new Location(world, 7.5, 4, 92.5, -540, 0));
+        locations.add(new Location(world, -20.5, 15, 80.5, 0, 0));
+        locations.add(new Location(world, -55.5, 5, 75.5, 0, 0));
+        locations.add(new Location(world, -54.5, 4, 46.5, 270, 0));
+        locations.add(new Location(world, 37.5, 4, 60.5, 180, 0));
+        locations.add(new Location(world, 98.5, 4, 195.5, 180, 0));
     }
     if(str != "button"){
         for(Chunk chunk : world.getLoadedChunks()) {
