@@ -40,6 +40,7 @@ public class Events implements Listener{
 	}
 	@EventHandler
 	private void onBlockInteract(PlayerInteractEvent event){
+		Main.getPlayerManager().updateButtonScoreMap();
 		if(Main.getRound() == 2 && Main.getGameManager().getGameState().equals(GameState.ACTIVE)){
 		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.getClickedBlock().getType().toString().endsWith("_BUTTON") && Main.getPlayerManager().getButtonScoreMap().containsKey(event.getPlayer())){
 			if(Main.getHungerGamesWorld().locations.size() <= Main.getPlayerManager().getButtonScoreMap().get(event.getPlayer())){
@@ -72,9 +73,6 @@ public class Events implements Listener{
 				}
 			}
 			else{
-			Integer level = Main.getPlayerManager().getButtonScoreMap().get(event.getPlayer());
-			Main.getPlayerManager().getButtonScoreMap().remove(event.getPlayer());
-			Main.getPlayerManager().getButtonScoreMap().put(event.getPlayer(), level + 1);
 			Main.getFindTheButton().nextLevel(event.getPlayer());
 			}
 		}
@@ -122,7 +120,7 @@ public class Events implements Listener{
 				e.getPlayer().setSaturation(20);
 				e.getPlayer().setHealth(20);
 				e.getPlayer().setGameMode(GameMode.SURVIVAL);
-				pm.teleportPlayer(e.getPlayer(), Bukkit.getWorld("survivalmap2"));
+				pm.teleportPlayer(e.getPlayer(), "survivalmap2");
 			}
 			else if(Main.getRound() == 2){
 				e.getPlayer().getInventory().clear();
@@ -131,7 +129,7 @@ public class Events implements Listener{
 				e.getPlayer().setSaturation(20);
 				e.getPlayer().setHealth(20);
 				e.getPlayer().setGameMode(GameMode.SURVIVAL);
-				Main.getPlayerManager().teleportPlayer(e.getPlayer(), Bukkit.getWorld("button"));
+				Main.getPlayerManager().teleportPlayer(e.getPlayer(), "button");
 			}
 		}
 		
@@ -165,7 +163,7 @@ public class Events implements Listener{
         }
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-    	if(pm.playing.contains(event.getPlayer()) && Main.getGameManager().getGameState() == GameState.STARTING) {
+    	if(pm.playing.contains(event.getPlayer()) && Main.getGameManager().getGameState() == GameState.STARTING || Main.getGameManager().getGameState() == GameState.PREPARING) {
     		final Location from = event.getFrom();
             final Location to = event.getTo();
             Main.getScoreboardManager();

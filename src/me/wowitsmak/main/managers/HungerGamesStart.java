@@ -7,18 +7,18 @@ import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
 import me.wowitsmak.main.Main;
 import me.wowitsmak.main.loot_tables.HungerGamesLootTable;
 import me.wowitsmak.main.scoreboard.ScoreboardOwner;
 import net.md_5.bungee.api.ChatColor;
 
 public class HungerGamesStart {
-	PlayerManager pm = Main.getPlayerManager();
-	public Integer time = 60;
+	public Integer time = 5;
 	public Integer cooldown = 100;
-	HungerGamesLootTable hg;
+	PlayerManager pm = Main.getPlayerManager();
+	HungerGamesLootTable hg = new HungerGamesLootTable();
 	public HungerGamesStart() {
+		this.time = 5;
 		this.pm = Main.getPlayerManager();
 		this.hg = new HungerGamesLootTable();
 	}
@@ -26,8 +26,8 @@ public class HungerGamesStart {
 		Main.getGameManager().setGameState(GameState.PREPARING);
 		Main.setRound(1);
 		Bukkit.getScheduler().cancelTasks(Main.getInstance());
-		for(Player player : Main.getPlayerManager().getParticipantsSet()) {
-			if(!pm.playing.contains(player)) {
+		for(Player player : Bukkit.getOnlinePlayers()) {
+			if(!pm.playing.contains(player) && Main.getPlayerManager().getParticipantsSet().contains(player)) {
 				pm.playing.add(player);
 			}
 			if(pm.spectators.contains(player)) {

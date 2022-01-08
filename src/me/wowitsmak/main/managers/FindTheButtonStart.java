@@ -13,6 +13,7 @@ public class FindTheButtonStart {
     private Integer time = Main.getTime();
     @SuppressWarnings("deprecation")
     public void Start() {
+    	Main.getPlayerManager().updateButtonScoreMap();
         Main.setRound(2);
         Main.getGameManager().setGameState(GameState.PREPARING);
         for(Player player : Main.getPlayerManager().getParticipantsSet()){
@@ -21,7 +22,13 @@ public class FindTheButtonStart {
             }
         }
         Main.getHungerGamesWorld().start("button");
-        for(Player player : Main.getPlayerManager().getParticipantsSet()) {
+        for(Player player : Bukkit.getOnlinePlayers()) {
+    			if(!Main.getPlayerManager().playing.contains(player) && Main.getPlayerManager().getParticipantsSet().contains(player)) {
+    				Main.getPlayerManager().playing.add(player);
+    			}
+    			if(Main.getPlayerManager().spectators.contains(player)) {
+    				Main.getPlayerManager().spectators.remove(player);
+    			}
 			player.getInventory().clear();
 			player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 100000, true, false));
 			player.setWalkSpeed(0F);
@@ -30,8 +37,8 @@ public class FindTheButtonStart {
 			player.setGameMode(GameMode.SURVIVAL);
 			Main.getPlayerManager().teleportPlayers(Bukkit.getWorld("button"));
 		}
-        for (Player toHide : Main.getPlayerManager().getParticipantsSet()) {
-            for (Player player : Main.getPlayerManager().getParticipantsSet()) {
+        for (Player toHide : Bukkit.getOnlinePlayers()) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
                 if (player != toHide && Main.getTeamManager().getPlayerTeam(player) != Main.getTeamManager().getPlayerTeam(toHide)) {
                       player.hidePlayer(toHide);
                 }
@@ -43,7 +50,8 @@ public class FindTheButtonStart {
                 if(time == 0) {
 					Main.getGameManager().setGameState(GameState.ACTIVE);
 					Bukkit.getScheduler().cancelTasks(Main.getInstance());
-					for(Player player : Main.getPlayerManager().getParticipantsSet()) {
+					for(Player player : Bukkit.getOnlinePlayers()) {
+						if(Main.getPlayerManager().getParticipantsSet().contains(player))
 			    		player.setWalkSpeed(0.2F);
 			    		for (PotionEffect effect : player.getActivePotionEffects())
 			    	        player.removePotionEffect(effect.getType());
@@ -54,7 +62,8 @@ public class FindTheButtonStart {
                 else {
 					Main.getScoreboardManager();
 					ScoreboardOwner.updateScoreboard();
-					for(Player player : Main.getPlayerManager().getParticipantsSet()) {
+					for(Player player : Bukkit.getOnlinePlayers()) {
+						if(Main.getPlayerManager().getParticipantsSet().contains(player))
 			    		player.sendTitle(ChatColor.GOLD + "Only " + time.toString() + " left!", ChatColor.YELLOW + "Be ready!", 1, 20, 1);
 			    	} 
 					time = time - 1;

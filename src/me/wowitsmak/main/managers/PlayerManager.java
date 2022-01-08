@@ -9,6 +9,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import me.wowitsmak.main.Main;
+import net.md_5.bungee.api.ChatColor;
 public class PlayerManager {
 	public Set<Player> moderators = new HashSet<>();
 	public Set<Player> spectators = new HashSet<>();
@@ -19,13 +20,11 @@ public class PlayerManager {
 	private Map<Player, Integer> buttonLeaderboard = new HashMap<>();
 	//private static Map<Player, Integer> playerButtonTotal = new HashMap<>();
 	public PlayerManager() {
-		for (OfflinePlayer player : Bukkit.getServer().getOperators()) {
-    		moderators.add(player.getPlayer());
-    	}
+		//for (OfflinePlayer player : Bukkit.getServer().getOperators()) {
+    	//	moderators.add(player.getPlayer());
+    	//}
 		for(OfflinePlayer player : Bukkit.getWhitelistedPlayers()){
-			if(!player.isOp()){
 				participants.add(player.getPlayer());
-			}
 		}
 		for(Player player : participants){
 			if(!buttonScoreMap.containsKey(player)){
@@ -38,12 +37,15 @@ public class PlayerManager {
 		return participants;
 	}
 	public Map<Player, Integer> getButtonScoreMap(){
+		
+		return buttonScoreMap;
+	}
+	public void updateButtonScoreMap() {
 		for(Player player : participants){
 			if(!buttonScoreMap.containsKey(player)){
 				buttonScoreMap.put(player, 0);
 			}
 		}
-		return buttonScoreMap;
 	}
 	public Map<Player, Integer> getButtonLeaderboard(){
 		return buttonLeaderboard;
@@ -56,21 +58,26 @@ public class PlayerManager {
 		}
 	}
 	public Collection<? extends Player> onlinePlayerList = Bukkit.getServer().getOnlinePlayers();
-	public void teleportPlayer(Player player, World world){
-		if(world.getName() == "button"){
-			player.teleport(Main.getHungerGamesWorld().locations.get(getButtonScoreMap().get(player)));
+	public void teleportPlayer(Player player, String str){
+		if(str == "button"){
+			Main.getHungerGamesWorld().start("button");
+			player.teleport(Main.getHungerGamesWorld().locations.get(Main.getPlayerManager().getButtonScoreMap().get(player)));
 		}
-		else if(world.getName() == "survivalmap2"){
+		else if(str == "survivalmap2"){
 			player.teleport(Main.getHungerGamesWorld().locations.get(participants.size() + 1));
+		}
+		else{
+			player.sendMessage(ChatColor.RED + "error");
 		}
 	}
 	public void teleportPlayers(World world)
 	{
 	Integer i = 0;
-	for(Player player : participants)
+	for(Player player : Bukkit.getOnlinePlayers())
+	if(Main.getPlayerManager().getParticipantsSet().contains(player))
 	{
 	if(Main.getHungerGamesWorld().locations.get(i).getWorld().getName() == "button"){
-		player.teleport(Main.getHungerGamesWorld().locations.get(getButtonScoreMap().get(player)));
+		player.teleport(Main.getHungerGamesWorld().locations.get(Main.getPlayerManager().getButtonScoreMap().get(player)));
 	}
 	else{
 	player.teleport(Main.getHungerGamesWorld().locations.get(i));

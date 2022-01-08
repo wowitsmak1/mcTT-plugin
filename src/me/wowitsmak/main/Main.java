@@ -13,7 +13,6 @@ import me.wowitsmak.main.commands.ShowOtherPlayers;
 import me.wowitsmak.main.commands.StartFindTheButtonCommand;
 import me.wowitsmak.main.commands.StartHungerGamesCommand;
 import me.wowitsmak.main.commands.StopFindTheButtonCommand;
-import me.wowitsmak.main.commands.StopFindTheButtonCommand;
 import me.wowitsmak.main.commands.StopHungerGamesCommand;
 import me.wowitsmak.main.events.Events;
 import me.wowitsmak.main.managers.FindTheButton;
@@ -31,7 +30,7 @@ public class Main extends JavaPlugin {
 	private static FindTheButton fbutton;
 	private static GameManager gameManager;
 	private static PlayerManager playerManager;
-	private static HungerGamesStart hgstart;
+	private static HungerGamesStart hgstart = new HungerGamesStart();
 	private static ReadyWorld hgworldpreparer;
 	private static PlayerPoints playerPoints;
 	private static TeamStuff teamStuff;
@@ -39,6 +38,8 @@ public class Main extends JavaPlugin {
 	private static Main instance;
 	private static Leaderboard leaderboard;
 	public Main() {
+		Main.fButtonStart = new FindTheButtonStart();
+		Main.fbutton = new FindTheButton();
 		Main.scmanager = new ScoreboardOwner();
 		Main.teamStuff = new TeamStuff();
 		Main.playerManager = new PlayerManager();
@@ -63,8 +64,8 @@ public class Main extends JavaPlugin {
 		StopFindTheButtonCommand fstopcommand = new StopFindTheButtonCommand();
 		ShowOtherPlayers showplayers = new ShowOtherPlayers();
 		HideOtherPlayers hideplayers = new HideOtherPlayers();
-    	Events blockbreak = new Events(new HungerGamesLootTable());
-    	getServer().getPluginManager().registerEvents(blockbreak, this);
+    	Events hglootable = new Events(new HungerGamesLootTable());
+    	getServer().getPluginManager().registerEvents(hglootable, this);
     	this.getCommand("survivalgames-start").setExecutor(hstartcommand);
 		this.getCommand("survivalgames-stop").setExecutor(hstopcommand);
 		this.getCommand("findthebutton-start").setExecutor(fstartcommand);
@@ -91,6 +92,7 @@ public class Main extends JavaPlugin {
     public static PlayerManager getPlayerManager() { return playerManager; }
 	public static Integer getRound(){ return game; }
 	public static void setRound(Integer num){ game = num; }
+	public static HungerGamesStart getHungerGamesStart(){ return hgstart; }
 	public static Integer getTime(){ return hgstart.time; }
 	public static void setTime(Integer num){ hgstart.time = num; }
 	public static Integer getCooldown(){ return hgstart.cooldown; }

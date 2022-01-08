@@ -35,7 +35,10 @@ public class GameManager {
 	
 	}
 	public GameState getGameState() {
+		if(this.gameState != null){
 		return this.gameState;
+		}
+		else { return GameState.ENDGAME; }
 	}
 	public BlockManager getBlockManager() {return blockManager; }
 
