@@ -16,3 +16,7 @@ commands:
    player-show:
 
    player-hide:
+
+   findthebutton-start:
+
+   findthebutton-stop:
