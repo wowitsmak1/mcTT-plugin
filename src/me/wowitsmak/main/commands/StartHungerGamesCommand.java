@@ -12,8 +12,8 @@ public class StartHungerGamesCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 		if(sender.isOp())
-		Main.getGameManager().setGameState(GameState.STARTING);
 		Main.setRound(1);
+		Main.getGameManager().setGameState(GameState.STARTING);
 		return false;
 	}
 

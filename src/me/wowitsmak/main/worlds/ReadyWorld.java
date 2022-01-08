@@ -133,7 +133,6 @@ public class ReadyWorld {
         locations.add(new Location(world, 119.5, 4, 152.5, 180, 0));
         locations.add(new Location(world, 53.5, 4, 154.5, 180, 0));
         locations.add(new Location(world, -59.5, 5, 149.5, 180, 0));
-        locations.add(new Location(world, 24.5, 4, 128.5, 180, 0));
         locations.add(new Location(world, 25.5, 4, 126.5, 180, 0));
         locations.add(new Location(world, 71.5, 4, 138.5, 180, 0));
         locations.add(new Location(world, 138.5, 4, 126.5, -90, 0));

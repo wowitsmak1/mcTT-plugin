@@ -45,7 +45,7 @@ public class Events implements Listener{
 		if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.getClickedBlock().getType().toString().endsWith("_BUTTON") && Main.getPlayerManager().getButtonScoreMap().containsKey(event.getPlayer())){
 			if(Main.getHungerGamesWorld().locations.size() <= Main.getPlayerManager().getButtonScoreMap().get(event.getPlayer())){
 				Main.getPlayerManager().getButtonLeaderboard().put(event.getPlayer(), Main.getPlayerManager().getButtonLeaderboard().size() + 1);
-				Bukkit.broadcastMessage(ChatColor.GOLD + event.getPlayer().getName() + "has finished in " + ChatColor.GREEN + Main.getPlayerManager().getButtonLeaderboard().get(event.getPlayer()) + " place.");
+				Bukkit.broadcastMessage(ChatColor.GOLD + event.getPlayer().getName() + " has finished in " + ChatColor.GREEN + Main.getPlayerManager().getButtonLeaderboard().get(event.getPlayer()) + " place.");
 				Integer placement = Main.getPlayerManager().getButtonLeaderboard().get(event.getPlayer());
 				if(placement == 1){
 					Main.getPointManager().addPoints(event.getPlayer(), 500);
@@ -65,6 +65,7 @@ public class Events implements Listener{
 				}
 				Main.getPlayerManager().playing.remove(event.getPlayer());
 				Main.getPlayerManager().spectators.add(event.getPlayer());
+				Main.getPlayerManager().getButtonScoreMap().remove(event.getPlayer());
 				event.getPlayer().setGameMode(GameMode.SPECTATOR);
 				Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> event.getPlayer().spigot().respawn(), 2);
 				if(Main.getPlayerManager().playing.size() == 0){

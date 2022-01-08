@@ -21,6 +21,7 @@ public class StopFindTheButtonCommand implements CommandExecutor {
         Main.setRound(2);
 		Main.getGameManager().setGameState(GameState.ENDGAME);
         Main.setTime(60);
+        Main.getPlayerManager().resetButtonMap();
         for(Iterator<Player> iterator = Main.getPlayerManager().playing.iterator(); iterator.hasNext();) {
             Player player = iterator.next();
             Bukkit.broadcastMessage(ChatColor.GREEN + player.getName() + " has " + Main.getPointManager().getPoints(player) + " points");

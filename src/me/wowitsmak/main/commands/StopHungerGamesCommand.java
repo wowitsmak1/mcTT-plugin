@@ -18,8 +18,8 @@ public class StopHungerGamesCommand implements CommandExecutor {
     @Override
 	public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 		if(sender.isOp())
-		Main.getGameManager().setGameState(GameState.ENDGAME);
 		Main.setRound(1);
+		Main.getGameManager().setGameState(GameState.ENDGAME);
         Main.setTime(60);
         for(Iterator<Player> iterator = Main.getPlayerManager().playing.iterator(); iterator.hasNext();) {
             Player player = iterator.next();

@@ -37,8 +37,17 @@ public class PlayerManager {
 		return participants;
 	}
 	public Map<Player, Integer> getButtonScoreMap(){
-		
 		return buttonScoreMap;
+	}
+	public void resetButtonMap(){
+		for(Player player : buttonScoreMap.keySet()){
+			buttonScoreMap.remove(player);
+		}
+		for(Player player : participants){
+			if(!buttonScoreMap.containsKey(player)){
+				buttonScoreMap.put(player, 0);
+			}
+		}
 	}
 	public void updateButtonScoreMap() {
 		for(Player player : participants){
