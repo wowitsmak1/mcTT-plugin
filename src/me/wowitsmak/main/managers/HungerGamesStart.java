@@ -13,12 +13,12 @@ import me.wowitsmak.main.scoreboard.ScoreboardOwner;
 import net.md_5.bungee.api.ChatColor;
 
 public class HungerGamesStart {
-	public Integer time = 5;
+	public Integer time = 60;
 	public Integer cooldown = 100;
 	PlayerManager pm = Main.getPlayerManager();
 	HungerGamesLootTable hg = new HungerGamesLootTable();
 	public HungerGamesStart() {
-		this.time = 5;
+		this.time = 60;
 		this.pm = Main.getPlayerManager();
 		this.hg = new HungerGamesLootTable();
 	}

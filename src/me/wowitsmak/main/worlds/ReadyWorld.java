@@ -133,7 +133,6 @@ public class ReadyWorld {
         locations.add(new Location(world, 119.5, 4, 152.5, 180, 0));
         locations.add(new Location(world, 53.5, 4, 154.5, 180, 0));
         locations.add(new Location(world, -59.5, 5, 149.5, 180, 0));
-        locations.add(new Location(world, -59.5, 4, 123.5, 180, 0));
         locations.add(new Location(world, 24.5, 4, 128.5, 180, 0));
         locations.add(new Location(world, 25.5, 4, 126.5, 180, 0));
         locations.add(new Location(world, 71.5, 4, 138.5, 180, 0));
@@ -142,13 +141,12 @@ public class ReadyWorld {
         locations.add(new Location(world, 111.5, 7, 106.5, 180, 0));
         locations.add(new Location(world, 76.5, 4, 107.5, 180, 0));
         locations.add(new Location(world, 37.5, 4, 110.5, 0, 0));
-        locations.add(new Location(world, 53.5, 5, 89.5, -900, 0));
+        locations.add(new Location(world, 53.5, 5, 90.5, -900, 0));
         locations.add(new Location(world, 7.5, 4, 92.5, -540, 0));
         locations.add(new Location(world, -20.5, 15, 80.5, 0, 0));
         locations.add(new Location(world, -55.5, 5, 75.5, 0, 0));
         locations.add(new Location(world, -54.5, 4, 46.5, 270, 0));
         locations.add(new Location(world, 37.5, 4, 60.5, 180, 0));
-        locations.add(new Location(world, 98.5, 4, 195.5, 180, 0));
     }
     if(str != "button"){
         for(Chunk chunk : world.getLoadedChunks()) {
